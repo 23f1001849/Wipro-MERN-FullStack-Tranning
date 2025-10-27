@@ -1,0 +1,3 @@
+# Ignore local editor history folders (e.g. VSCode Local History extension)
+.history/
+**/.history/
