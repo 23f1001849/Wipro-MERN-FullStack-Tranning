@@ -1,0 +1,129 @@
+<!-- All type of navigation bars using Bootstrap framework in a single page. A navigation bar (or navbar) is a section of a website that contains links to other sections or pages. Bootstrap provides pre-designed components to create responsive and stylish navbars easily. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Navigation Bars</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Basic Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Basic Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicNavbar" aria-controls="basicNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="basicNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <!-- Navbar with Dropdown -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Navbar with Dropdown</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dropdownNavbar" aria-controls="dropdownNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="dropdownNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Services
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Web Development</a>
+                        <a class="dropdown-item" href="#">App Development</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">SEO</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <!-- Navbar with Search Form -->    
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <a class="navbar-brand" href="#">Navbar with Search</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#searchNavbar" aria-controls="searchNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="searchNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <br>
+    <!-- Fixed Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <a class="navbar-brand" href="#">Fixed Top Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#fixedTopNavbar" aria-controls="fixedTopNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="fixedTopNavbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- add vertical nav bar -->
+    <br><br><br>
+    <div class="d-flex">
+        <nav class="nav flex-column bg-light p-3">
+            <a class="nav-link active" href="#">Dashboard</a>
+            <a class="nav-link" href="#">Profile</a>
+            <a class="nav-link" href="#">Settings</a>
+            <a class="nav-link" href="#">Logout</a>
+        </nav>
+        <div class="content p-3">
+            <h1>Main Content Area</h1>
+            <p>This is where the main content goes.</p>
+        </div>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+<!-- All type of navigation bars using Bootstrap framework in a single page. A navigation bar (or navbar) is a section of a website that contains links to other sections or pages. Bootstrap provides pre-designed components to create responsive and stylish navbars easily. -->

@@ -1,0 +1,38 @@
+<!--- how can js script can be invoked in html page 
+  1. Inline Script
+  2. Internal Script
+  3. External Script 
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JavaScript Introduction</title>
+    <meta name="description" content="Basic introduction to JavaScript" />
+    <script>
+        // Internal Script Example
+        function showMessage() {
+            alert('Welcome to JavaScript Introduction!');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Introduction</h1>
+        <h2>Getting Started with JavaScript</h2>
+    </header>
+
+    <main>
+        <p>This page demonstrates how to include JavaScript in an HTML document.</p>
+        <button onclick="showMessage()">Click Me!</button> <!-- Inline Script Example -->
+    </main>
+
+    <footer>
+        <small>© 2025 JavaScript Intro</small>
+    </footer>
+
+    <script src="Demo_js.js"></script> <!-- External Script Example -->
+</body>
+</html>
