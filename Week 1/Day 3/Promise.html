@@ -15,7 +15,8 @@
 
     <main>
         <p>This page demonstrates the use of Promises in JavaScript.</p>
-        <button id="fetchDataBtn">Fetch Data</button>
+        <button id="fetchDataBtn">Fetch Data (Success)</button>
+        <button id="fetchDataErrorBtn">Fetch Data (Error)</button>
         <div id="result"></div>
     </main>
 
@@ -24,6 +25,7 @@
     </footer>
 
     <script>
+        // Success scenario - Promise resolves
         document.getElementById('fetchDataBtn').addEventListener('click', () => {
             const fetchData = new Promise((resolve, reject) => {
                 setTimeout(() => {
@@ -32,10 +34,34 @@
                 }, 2000);
             });
 
+            document.getElementById('result').innerText = "Fetching data...";
+            
             fetchData.then(data => {
                 document.getElementById('result').innerText = data.message;
+                document.getElementById('result').style.color = "green";
             }).catch(error => {
-                document.getElementById('result').innerText = "Error fetching data.";
+                document.getElementById('result').innerText = "Error: " + error.message;
+                document.getElementById('result').style.color = "red";
+            });
+        });
+
+        // Error scenario - Promise rejects
+        document.getElementById('fetchDataErrorBtn').addEventListener('click', () => {
+            const fetchData = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const error = new Error("Failed to fetch data from server!");
+                    reject(error);
+                }, 2000);
+            });
+
+            document.getElementById('result').innerText = "Fetching data...";
+            
+            fetchData.then(data => {
+                document.getElementById('result').innerText = data.message;
+                document.getElementById('result').style.color = "green";
+            }).catch(error => {
+                document.getElementById('result').innerText = "Error: " + error.message;
+                document.getElementById('result').style.color = "red";
             });
         });
     </script>
