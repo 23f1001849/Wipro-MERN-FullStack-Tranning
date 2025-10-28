@@ -1,0 +1,43 @@
+<!-- // ES6 Promise example -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JavaScript Introduction</title>
+    <meta name="description" content="Basic introduction to JavaScript" />
+</head>
+<body>
+    <header>
+        <h1>JavaScript Promise Example</h1>
+        <h2>Understanding Promises in JavaScript</h2>
+    </header>
+
+    <main>
+        <p>This page demonstrates the use of Promises in JavaScript.</p>
+        <button id="fetchDataBtn">Fetch Data</button>
+        <div id="result"></div>
+    </main>
+
+    <footer>
+        <small>© 2025 JavaScript Intro</small>
+    </footer>
+
+    <script>
+        document.getElementById('fetchDataBtn').addEventListener('click', () => {
+            const fetchData = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const data = { message: "Data fetched successfully!" };
+                    resolve(data);
+                }, 2000);
+            });
+
+            fetchData.then(data => {
+                document.getElementById('result').innerText = data.message;
+            }).catch(error => {
+                document.getElementById('result').innerText = "Error fetching data.";
+            });
+        });
+    </script>
+</body>
+</html> 
