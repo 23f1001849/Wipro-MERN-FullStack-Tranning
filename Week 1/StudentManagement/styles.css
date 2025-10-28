@@ -1,0 +1,286 @@
+:root {
+    --primary: #21539c;
+    --accent: #f2b441;
+    --background: #f5f7fb;
+    --text: #1f2933;
+    --muted: #64748b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.container {
+    transition: opacity 0.3s ease;
+}
+
+.top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--primary);
+    color: #ffffff;
+    padding: 1.5rem clamp(1.5rem, 4vw, 3rem);
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: #ffffff;
+    color: var(--primary);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 0.1rem;
+}
+
+.titles .school-name {
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+
+.titles .tagline {
+    font-size: 0.85rem;
+    color: #e2e8f0;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.25rem;
+    font-weight: 500;
+}
+
+.menu a {
+    color: #ffffff;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 0.25rem;
+}
+
+.menu a:not(.btn)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 0.15rem;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.menu a:not(.btn):hover::after,
+.menu a:not(.btn):focus::after {
+    width: 100%;
+}
+
+.menu .btn {
+    font-weight: 600;
+    border-radius: 999px;
+    padding-inline: 1.5rem;
+}
+
+body:not(.is-authenticated) .menu {
+    display: none;
+}
+
+.auth-layout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+.auth-card {
+    flex: 1 1 clamp(280px, 40%, 420px);
+    border: none;
+    border-radius: 1.25rem;
+}
+
+.auth-card .card-body {
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.auth-card .btn {
+    border-radius: 0.85rem;
+}
+
+.hero .card-body {
+    padding: clamp(2rem, 4vw, 3rem);
+}
+
+.hero .card-text {
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+}
+
+.spotlight {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    margin-top: 2.5rem;
+}
+
+.card-panel {
+    display: none;
+    flex: 1 1 clamp(280px, 46%, 460px);
+    border: none;
+}
+
+.card-panel.active {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-panel .card-body {
+    padding: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.card-panel h2 {
+    margin-bottom: 1.5rem;
+}
+
+dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.5rem 1.25rem;
+}
+
+dl dt {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.35rem;
+}
+
+dl dd {
+    margin: 0;
+    color: var(--text);
+}
+
+.info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2.75rem;
+}
+
+.info-card {
+    flex: 1 1 clamp(260px, 30%, 320px);
+    border: none;
+    background: #ffffff;
+}
+
+.info-card .card-body {
+    padding: 2rem;
+}
+
+.info-card h2 {
+    margin-bottom: 1rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem 1rem 3rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+.monthly-section {
+    margin-top: 2.75rem;
+    border: none;
+    border-radius: 1.5rem;
+}
+
+.monthly-section .card-body {
+    padding: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.subject-filter {
+    min-width: 220px;
+}
+
+.activity-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+}
+
+.activity-card {
+    border-radius: 1rem;
+    background: #ffffff;
+    box-shadow: 0 10px 28px rgba(33, 83, 156, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.activity-card span {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(33, 83, 156, 0.1);
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.activity-card time {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+@media (max-width: 720px) {
+    .top-bar {
+        padding: 1.25rem 1.5rem;
+    }
+
+    .menu {
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+        gap: 0.75rem;
+    }
+
+    .menu .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .auth-layout {
+        margin-top: 1.5rem;
+    }
+
+    .auth-card {
+        flex: 1 1 100%;
+    }
+
+    .spotlight {
+        margin-top: 2rem;
+    }
+
+    .activity-list {
+        grid-template-columns: 1fr;
+    }
+}
