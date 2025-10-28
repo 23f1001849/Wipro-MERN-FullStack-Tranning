@@ -1,0 +1,92 @@
+<!--  api vs rest api vs web api -->
+  <!-- Rest API -->
+  <!-- <p>REST (Representational State Transfer) API is an architectural style for designing networked applications. It relies on a stateless, client-server, cacheable communications protocol -- the HTTP.</p>
+  <p>REST APIs are defined by their use of standard HTTP methods (GET, POST, PUT, DELETE) and are designed to be simple, lightweight, and easy to use.</p> -->
+    <!-- Web API -->
+  <!-- <p>Web API is a framework for building HTTP services that can be accessed from any client, including browsers and mobile devices. It is built on the principles of REST and is designed to be lightweight and easy to use.</p>
+  <p>Web APIs are typically used to expose data and functionality from a server to a client over the web.</p> -->
+  <!-- API -->
+  <!-- <p>API (Application Programming Interface) is a set of protocols, routines, and tools for building software applications. It defines how different software components should interact with each other.</p>
+  <p>APIs can be used to expose data and functionality from a server to a client, or to allow different software components to communicate with each other within a single application.</p> -->
+  <!--soap api -->
+  <!-- <p>SOAP (Simple Object Access Protocol) API is a protocol for exchanging structured information in the implementation of web services. It relies on XML-based messaging and is designed to be platform-independent.</p>
+  <p>SOAP APIs are typically used in enterprise environments where security and reliability are critical.</p> -->
+  <!-- why api is future of software development and how is it replaced by ai agents -->
+  <!-- <p>APIs are the backbone of modern software development, enabling seamless communication between different systems and services. As software development continues to evolve, APIs are becoming increasingly important for building scalable, flexible, and maintainable applications.</p>
+  <p>AI agents are starting to replace traditional APIs by providing more intelligent and adaptive interfaces for interacting with software systems. These AI-driven interfaces can understand natural language, learn from user interactions, and provide personalized experiences, making them a powerful alternative to traditional APIs.</p> -->
+
+  <!-- API v/s REST API v/s Web API v/s SOAP -->
+<!-- REST API : Representational State Transfer Application Programming Interface -->
+ <!-- Web API : Web API is a framework that makes it easy to build HTTP services that reach a broad range of clients, including browsers and mobile devices. -->
+<!-- SOAP : Simple Object Access Protocol : it is a protocol for exchanging structured information in the implementation of web services. -->
+ <!-- REST API : Representational State Transfer API : it is an architectural style that uses HTTP requests to access and use data. -->
+  <!-- Final objective of any API is to enable seamless communication between different software systems.
+   with reference Full stack application API helps us in connecting the frontend with the backend services, 
+   allowing for data exchange and functionality integration. -->
+<!-- REST API uses standard HTTP methods like GET, POST, PUT, DELETE to perform operations on resources identified by URLs. -->
+<!-- REST API typically returns data in JSON or XML format, making it easy for different systems to parse and understand the data. -->
+ <!-- REST API is stateless, meaning each request from a client to the server must contain all the information needed to understand and process the request. -->
+<!-- Why API is future of software development? ans how it is being replaced via AI Agents  -->
+<!-- REST API is designed to be scalable and can handle a large number of requests from multiple clients simultaneously. -->
+
+
+<!-- we can implement following http methods using fetch API for https://jsonplaceholder.typicode.com/comments -->
+<!-- GET : to fetch data from the server -->
+<!-- POST : to send data to the server to create a new resource --> 
+<!-- PUT : to update an existing resource on the server -->
+<!-- DELETE : to delete a resource from the server -->
+<!-- we will use postman to test these APIs -->
+
+<!-- following code does the following 
+ To demonstrate how to perform GET, POST, PUT, and DELETE operations on a REST API using Fetch API and Async/Await, display data dynamically on the web page using DOM manipulation, and handle errors gracefully.
+ -->
+<!--index.html-->
+<!--script in script.js and css in styles.css-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REST API with Fetch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>REST API with Fetch</h1>
+    <p class="subtitle">Interact with JSONPlaceholder comments using async and await.</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel" aria-labelledby="comment-form-title">
+      <h2 id="comment-form-title">Create or Update a Comment</h2>
+      <form id="comment-form" class="comment-form" novalidate>
+        <input type="hidden" id="comment-id">
+        <div class="field-group">
+          <label for="comment-name">Name</label>
+          <input id="comment-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field-group">
+          <label for="comment-email">Email</label>
+          <input id="comment-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field-group">
+          <label for="comment-body">Comment</label>
+          <textarea id="comment-body" name="comment" rows="4" required></textarea>
+        </div>
+        <div class="actions">
+          <button id="submit-button" type="submit">Add</button>
+        </div>
+      </form>
+      <p class="hint">Select edit in the list to load a comment into the form.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="comment-list-title">
+      <h2 id="comment-list-title">Available Comments</h2>
+      <div id="comments-container" role="list"></div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
