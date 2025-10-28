@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="page">
+        <header class="page__header">
+            <h1>Weather Dashboard</h1>
+            <p>Search any city to view the latest conditions and a three day outlook powered by WeatherAPI.com.</p>
+        </header>
+
+        <section class="card">
+            <form id="search-form" class="search" autocomplete="off">
+                <label class="search__label" for="city-input">City, postal code, or coordinates</label>
+                <div class="search__controls">
+                    <input id="city-input" name="city" type="text" placeholder="e.g. London, UK" required>
+                    <button id="search-button" type="submit">Get Weather</button>
+                </div>
+                <p class="search__hint">Tip: add a country code for duplicate city names &mdash; for example, "Springfield, US".</p>
+            </form>
+        </section>
+
+        <section id="status" class="status" role="status" aria-live="polite"></section>
+
+        <section id="results" class="results hidden">
+            <article id="current" class="current"></article>
+            <section id="forecast" class="forecast" aria-label="Three day forecast"></section>
+        </section>
+    </main>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const API_KEY = "cbb9762e6fc24258b5982023252810"; // Demo key provided in DOM_manipulation.html
+const API_KEY = "cbb9762e6fc24258b5982023252810"; 
 const BASE_URL = "https://api.weatherapi.com/v1/forecast.json";
 
 const form = document.querySelector("#search-form");
