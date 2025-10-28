@@ -6,6 +6,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>JavaScript Introduction</title>
     <meta name="description" content="Basic introduction to JavaScript" />
+    <style>
+        :root {
+            color-scheme: light dark;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f6fa;
+            color: #1f2933;
+        }
+
+        header,
+        footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            background: #111827;
+            color: #f9fafb;
+        }
+
+        main {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0 2rem;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background: #2563eb;
+            color: #f9fafb;
+            transition: transform 150ms ease, background-color 150ms ease;
+        }
+
+        button:hover:not(:disabled) {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        button:disabled {
+            opacity: 0.6;
+            cursor: progress;
+        }
+
+        .status {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            min-height: 1.5rem;
+        }
+
+        .data-container {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .data-card {
+            background: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            padding: 1.25rem 1.5rem;
+            border: 1px solid rgba(15, 23, 42, 0.05);
+        }
+
+        .data-card.error {
+            border-color: rgba(220, 38, 38, 0.3);
+            background: rgba(254, 242, 242, 0.85);
+        }
+
+        dl {
+            display: grid;
+            grid-template-columns: max-content 1fr;
+            gap: 0.5rem 1rem;
+            margin: 0 0 1rem;
+        }
+
+        dt {
+            font-weight: 700;
+        }
+
+        dd {
+            margin: 0;
+        }
+
+        ul {
+            padding-left: 1.25rem;
+            margin: 0;
+        }
+
+        dialog {
+            border: none;
+            border-radius: 0.75rem;
+            padding: 1.75rem 1.5rem;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.2);
+            width: min(420px, 90vw);
+        }
+
+        dialog::backdrop {
+            background: rgba(15, 23, 42, 0.55);
+        }
+
+        .dialog-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .dialog-form label {
+            font-weight: 600;
+        }
+
+        .dialog-form input[type="number"] {
+            width: 100%;
+            padding: 0.65rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(15, 23, 42, 0.2);
+            font-size: 1rem;
+        }
+
+        .dialog-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        .secondary-btn {
+            background: #6b7280;
+        }
+
+        .secondary-btn:hover {
+            background: #4b5563;
+        }
+
+        .input-error {
+            min-height: 1rem;
+            font-size: 0.9rem;
+            color: crimson;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -15,9 +162,24 @@
 
     <main>
         <p>This page demonstrates the use of Promises in JavaScript.</p>
-        <button id="fetchDataBtn">Fetch Data (Success)</button>
-        <button id="fetchDataErrorBtn">Fetch Data (Error)</button>
-        <div id="result"></div>
+        <div class="controls">
+            <button id="fetchDataBtn" data-fetch="success">Fetch Data (Success)</button>
+            <button id="fetchDataErrorBtn" data-fetch="error">Fetch Data (Error)</button>
+        </div>
+        <p id="result" class="status" aria-live="polite"></p>
+        <section id="dataContainer" class="data-container" aria-live="polite"></section>
+        <dialog id="dataDialog">
+            <form id="dialogForm" class="dialog-form">
+                <h3>Choose the record to load</h3>
+                <label for="dataId">Enter an ID between 1 and 3</label>
+                <input type="number" id="dataId" name="dataId" min="1" step="1" required />
+                <p id="idError" class="input-error" role="alert" aria-live="polite"></p>
+                <div class="dialog-actions">
+                    <button type="button" class="secondary-btn" id="cancelDialogBtn">Cancel</button>
+                    <button type="submit">Fetch</button>
+                </div>
+            </form>
+        </dialog>
     </main>
 
     <footer>
@@ -25,45 +187,191 @@
     </footer>
 
     <script>
-        // Success scenario - Promise resolves
-        document.getElementById('fetchDataBtn').addEventListener('click', () => {
-            const fetchData = new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    const data = { message: "Data fetched successfully!" };
-                    resolve(data);
-                }, 2000);
-            });
+        const fetchButtons = document.querySelectorAll('[data-fetch]');
+        const statusEl = document.getElementById('result');
+        const dataContainer = document.getElementById('dataContainer');
+        const dataDialog = document.getElementById('dataDialog');
+        const dialogForm = document.getElementById('dialogForm');
+        const idInput = document.getElementById('dataId');
+        const cancelDialogBtn = document.getElementById('cancelDialogBtn');
+        const idError = document.getElementById('idError');
 
-            document.getElementById('result').innerText = "Fetching data...";
-            
-            fetchData.then(data => {
-                document.getElementById('result').innerText = data.message;
-                document.getElementById('result').style.color = "green";
-            }).catch(error => {
-                document.getElementById('result').innerText = "Error: " + error.message;
-                document.getElementById('result').style.color = "red";
+        let pendingScenario = 'success';
+
+        const mockData = new Map([
+            [1, {
+                user: { id: 1, name: 'Ada Lovelace', email: 'ada.lovelace@example.com', role: 'Mathematician' },
+                todos: [
+                    { id: 101, title: 'Review promise basics', done: true },
+                    { id: 102, title: 'Explore chaining with then()', done: true },
+                    { id: 103, title: 'Cover edge cases for rejection', done: false },
+                ],
+            }],
+            [2, {
+                user: { id: 2, name: 'Alan Turing', email: 'alan.turing@example.com', role: 'Computer Scientist' },
+                todos: [
+                    { id: 201, title: 'Build a reusable promise helper', done: false },
+                    { id: 202, title: 'Compare Promise.all vs Promise.race', done: false },
+                    { id: 203, title: 'Write tests for async flows', done: true },
+                ],
+            }],
+            [3, {
+                user: { id: 3, name: 'Grace Hopper', email: 'grace.hopper@example.com', role: 'Rear Admiral' },
+                todos: [
+                    { id: 301, title: 'Explain async/await to the team', done: true },
+                    { id: 302, title: 'Document error handling patterns', done: true },
+                    { id: 303, title: 'Plan demo on microtasks', done: false },
+                ],
+            }],
+        ]);
+
+        const toggleButtons = (disabled) => {
+            fetchButtons.forEach((button) => {
+                button.disabled = disabled;
+            });
+        };
+
+        const setLoadingState = () => {
+            toggleButtons(true);
+            statusEl.textContent = 'Fetching data...';
+            statusEl.style.color = '#1d4ed8';
+            dataContainer.innerHTML = '';
+        };
+
+        const simulateFetch = ({ shouldFail = false, userId }) => new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (shouldFail) {
+                    reject(new Error('Failed to fetch data from server!'));
+                    return;
+                }
+
+                const entry = mockData.get(userId);
+
+                if (!entry) {
+                    reject(new Error(`No data found for ID ${userId}.`));
+                    return;
+                }
+
+                resolve({
+                    message: `Data fetched successfully for ID ${userId}!`,
+                    fetchedAt: new Date().toLocaleTimeString(),
+                    user: entry.user,
+                    todos: entry.todos,
+                });
+            }, 1500);
+        });
+
+        const renderData = (data) => {
+            statusEl.textContent = data.message;
+            statusEl.style.color = 'green';
+
+            const roleMarkup = data.user.role ? `<dt>Role</dt><dd>${data.user.role}</dd>` : '';
+            const todoItems = data.todos.map((todo) => `
+                <li>
+                    <span>#${todo.id} — ${todo.title}</span>
+                    <strong>${todo.done ? 'Done' : 'Pending'}</strong>
+                </li>
+            `).join('');
+
+            dataContainer.innerHTML = `
+                <article class="data-card">
+                    <h3>User</h3>
+                    <dl>
+                        <dt>ID</dt><dd>${data.user.id}</dd>
+                        <dt>Name</dt><dd>${data.user.name}</dd>
+                        <dt>Email</dt><dd>${data.user.email}</dd>
+                        ${roleMarkup}
+                    </dl>
+                    <h3>Fetched At</h3>
+                    <p>${data.fetchedAt}</p>
+                    <h3>To-do Items</h3>
+                    <ul>${todoItems}</ul>
+                </article>
+            `;
+        };
+
+        const renderError = (error) => {
+            statusEl.textContent = `Error: ${error.message}`;
+            statusEl.style.color = 'crimson';
+            dataContainer.innerHTML = `
+                <article class="data-card error">
+                    <p>We could not load the data. Please try again.</p>
+                </article>
+            `;
+        };
+
+        const handleRequest = ({ shouldFail, userId }) => {
+            setLoadingState();
+            simulateFetch({ shouldFail, userId })
+                .then(renderData)
+                .catch(renderError)
+                .finally(() => toggleButtons(false));
+        };
+
+        const openDialog = (scenario) => {
+            pendingScenario = scenario;
+            idError.textContent = '';
+
+            if (!idInput.value) {
+                idInput.value = '1';
+            }
+
+            if (typeof dataDialog.showModal === 'function') {
+                dataDialog.showModal();
+                setTimeout(() => idInput.focus(), 0);
+                return;
+            }
+
+            const promptFallback = window.prompt('Enter an ID between 1 and 3', idInput.value);
+            if (promptFallback === null) {
+                return;
+            }
+
+            const userId = Number(promptFallback);
+            if (!Number.isInteger(userId) || userId <= 0) {
+                statusEl.textContent = 'Please enter a valid positive integer ID.';
+                statusEl.style.color = 'crimson';
+                return;
+            }
+
+            handleRequest({ shouldFail: scenario === 'error', userId });
+        };
+
+        dialogForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const rawValue = idInput.value.trim();
+            const userId = Number(rawValue);
+
+            if (!rawValue || !Number.isInteger(userId) || userId <= 0) {
+                idError.textContent = 'Please enter a valid positive integer ID.';
+                idInput.focus();
+                return;
+            }
+
+            idError.textContent = '';
+            dataDialog.close();
+            handleRequest({ shouldFail: pendingScenario === 'error', userId });
+        });
+
+        cancelDialogBtn.addEventListener('click', () => {
+            idError.textContent = '';
+            dataDialog.close();
+        });
+
+        dataDialog.addEventListener('cancel', () => {
+            idError.textContent = '';
+        });
+
+        fetchButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                openDialog(button.dataset.fetch);
             });
         });
 
-        // Error scenario - Promise rejects
-        document.getElementById('fetchDataErrorBtn').addEventListener('click', () => {
-            const fetchData = new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    const error = new Error("Failed to fetch data from server!");
-                    reject(error);
-                }, 2000);
-            });
-
-            document.getElementById('result').innerText = "Fetching data...";
-            
-            fetchData.then(data => {
-                document.getElementById('result').innerText = data.message;
-                document.getElementById('result').style.color = "green";
-            }).catch(error => {
-                document.getElementById('result').innerText = "Error: " + error.message;
-                document.getElementById('result').style.color = "red";
-            });
-        });
+        statusEl.textContent = 'Choose a scenario to fetch data.';
+        statusEl.style.color = '#1f2937';
+        idInput.value = '1';
     </script>
 </body>
 </html> 
