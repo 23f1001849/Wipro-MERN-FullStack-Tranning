@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 1 Demos</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1d2b53 45%, #394867 100%);
+            --surface: rgba(15, 23, 42, 0.75);
+            --surface-light: rgba(255, 255, 255, 0.9);
+            --text-on-dark: #f8fafc;
+            --primary: #38bdf8;
+            --primary-dark: #0ea5e9;
+            --accent: #a855f7;
+            --border: rgba(148, 163, 184, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            color: var(--text-on-dark);
+            display: flex;
+            flex-direction: column;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        header {
+            padding: 4rem 1.5rem 3rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(2.25rem, 3vw, 3.25rem);
+            letter-spacing: 0.05em;
+        }
+
+        header p {
+            margin: 1rem auto 0;
+            max-width: 640px;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: rgba(226, 232, 240, 0.85);
+        }
+
+        nav {
+            margin-top: 2.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            background: rgba(15, 118, 110, 0.1);
+            transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover,
+        nav a:focus-visible {
+            border-color: var(--primary);
+            background: rgba(56, 189, 248, 0.2);
+            transform: translateY(-1px);
+        }
+
+        main {
+            flex: 1;
+            padding: 0 1.5rem 4rem;
+        }
+
+        .content-wrapper {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+        }
+
+        .filters label {
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .filters select {
+            padding: 0.6rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.7);
+            color: var(--text-on-dark);
+            font-size: 1rem;
+            min-width: 200px;
+        }
+
+        section {
+            margin-top: 2.5rem;
+        }
+
+        section h2 {
+            font-size: 1.4rem;
+            letter-spacing: 0.03em;
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.25rem;
+        }
+
+        .card a {
+            position: relative;
+            display: block;
+            padding: 1.1rem 1rem 1rem 1.1rem;
+            border-radius: 14px;
+            background: var(--surface);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            text-decoration: none;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            backdrop-filter: blur(6px);
+            min-height: 100px;
+        }
+
+        .card a span {
+            display: block;
+            margin-top: 0.6rem;
+            font-size: 0.85rem;
+            color: rgba(226, 232, 240, 0.65);
+        }
+
+        .card a::after {
+            content: "→";
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.2rem;
+            color: rgba(226, 232, 240, 0.6);
+            transition: transform 0.25s ease;
+        }
+
+        .card a:hover,
+        .card a:focus-visible {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 18px 38px rgba(15, 23, 42, 0.3);
+        }
+
+        .card a:hover::after,
+        .card a:focus-visible::after {
+            transform: translateX(4px);
+            color: var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem 1rem 2.75rem;
+            color: rgba(226, 232, 240, 0.75);
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.15);
+            background: rgba(15, 23, 42, 0.65);
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover,
+        footer a:focus-visible {
+            text-decoration: underline;
+        }
+
+        .back-to-top {
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            border: none;
+            border-radius: 999px;
+            padding: 0.8rem 1rem;
+            background: rgba(14, 165, 233, 0.95);
+            color: #0b1120;
+            font-weight: 600;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 15px 30px rgba(14, 165, 233, 0.4);
+        }
+
+        .back-to-top:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 720px) {
+            header {
+                padding: 3.5rem 1.25rem 2.5rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filters select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Week 1 Demo Showcase</h1>
+        <p>
+            Explore the collection of hands-on exercises from the Week 1 curriculum. Each module highlights a key
+            concept, from foundational HTML to working with modern JavaScript and live data integrations.
+        </p>
+        <nav aria-label="Section shortcuts">
+            <a href="#day-1">Day 1</a>
+            <a href="#day-2">Day 2</a>
+            <a href="#day-3">Day 3</a>
+            <a href="#day-4">Day 4</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-wrapper">
+            <div class="filters">
+                <label for="day-filter">Filter by day</label>
+                <select id="day-filter">
+                    <option value="all">Show all</option>
+                    <option value="day-1">Day 1 &mdash; HTML Fundamentals</option>
+                    <option value="day-2">Day 2 &mdash; JavaScript &amp; Bootstrap</option>
+                    <option value="day-3">Day 3 &mdash; Modern JavaScript</option>
+                    <option value="day-4">Day 4 &mdash; Fetch API &amp; Projects</option>
+                </select>
+            </div>
+
+            <section id="day-1" data-day="day-1">
+                <h2>Day 1 &mdash; HTML Fundamentals</h2>
+                <ul class="card">
+                    <li><a href="Week%201/Day%201%20HTML%20demo/HelloWorld.html">Hello World<span>Quick tour of HTML skeleton and first render.</span></a></li>
+                    <li><a href="Week%201/Day%201%20HTML%20demo/Html_form.html">HTML Form<span>Basic form inputs, labels, and submission flow.</span></a></li>
+                    <li><a href="Week%201/Day%201%20HTML%20demo/myprofile.html">My Profile<span>Semantic sections and structured profile layout.</span></a></li>
+                </ul>
+            </section>
+
+            <section id="day-2" data-day="day-2">
+                <h2>Day 2 &mdash; JavaScript &amp; Bootstrap</h2>
+                <ul class="card">
+                    <li><a href="Week%201/Day%202%20js%20and%20bootstrap/js_intro.html">JS Intro<span>Script fundamentals, variables, and DOM hooks.</span></a></li>
+                    <li><a href="Week%201/Day%202%20js%20and%20bootstrap/nav_bar.html">Bootstrap Nav Bar<span>Responsive navigation with Bootstrap utilities.</span></a></li>
+                    <li><a href="Week%201/Day%202%20js%20and%20bootstrap/ToDo%20List/index.html">To-Do List App<span>Interactive list with add, toggle, and remove actions.</span></a></li>
+                </ul>
+            </section>
+
+            <section id="day-3" data-day="day-3">
+                <h2>Day 3 &mdash; Modern JavaScript</h2>
+                <ul class="card">
+                    <li><a href="Week%201/Day%203/Demo_ES6.html">ES6 Demo<span>Let, const, template literals, and arrow functions.</span></a></li>
+                    <li><a href="Week%201/Day%203/Promise.html">Promise Demo<span>Async patterns with promise chaining and handling.</span></a></li>
+                </ul>
+            </section>
+
+            <section id="day-4" data-day="day-4">
+                <h2>Day 4 &mdash; Fetch API &amp; Projects</h2>
+                <ul class="card">
+                    <li><a href="Week%201/Day%204%20Fetch_restapi%20using%20js/Restfull_api.html">RESTful API Demo<span>Fetch lifecycle, status codes, and JSON rendering.</span></a></li>
+                    <li><a href="Week%201/Day%204%20Fetch_restapi%20using%20js/weather%20api%20demo/index.html">Weather API Demo<span>Live weather data with dynamic UI updates.</span></a></li>
+                    <li><a href="Week%201/Day%204%20Fetch_restapi%20using%20js/weather%20api%20demo%20accu/index.html">Weather API Demo (Accu)<span>Alternate provider integration for data comparison.</span></a></li>
+                    <li><a href="Week%201/Day%204%20Fetch_restapi%20using%20js/StudentManagement/index.html">Student Management App<span>Full CRUD simulation with modular JS structure.</span></a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        © <span id="year"></span> Week 1 Demo Gallery · <a href="https://github.com/23f1001849/Wipro-MERN-FullStack-Tranning" target="_blank" rel="noopener">GitHub Repository</a>
+    </footer>
+
+    <button type="button" class="back-to-top" aria-label="Back to top">Top</button>
+
+    <script>
+        // Keep footer year current without manual updates.
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        const backToTop = document.querySelector(".back-to-top");
+        const dayFilter = document.getElementById("day-filter");
+        const sections = Array.from(document.querySelectorAll("section[data-day]"));
+
+        window.addEventListener("scroll", () => {
+            backToTop.style.display = window.scrollY > 400 ? "inline-flex" : "none";
+        });
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Filter sections by chosen day while maintaining hash state for deep links.
+        dayFilter.addEventListener("change", (event) => {
+            const { value } = event.target;
+            sections.forEach((section) => {
+                const isMatch = value === "all" || section.dataset.day === value;
+                section.style.display = isMatch ? "block" : "none";
+            });
+
+            if (value !== "all") {
+                location.hash = value;
+                document.getElementById(value)?.scrollIntoView({ behavior: "smooth", block: "start" });
+            } else {
+                history.replaceState(null, "", location.pathname + location.search);
+            }
+        });
+
+        // Respect initial hash when landing from deep links.
+        const activeHash = location.hash.replace("#", "");
+        if (activeHash && document.getElementById(activeHash)) {
+            dayFilter.value = activeHash;
+            dayFilter.dispatchEvent(new Event("change"));
+        }
+    </script>
+</body>
+</html>
