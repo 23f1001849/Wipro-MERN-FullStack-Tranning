@@ -1,0 +1,35 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #e8f1ff 0%, #ffffff 100%);
+}
+
+.hero-section img {
+    max-height: 320px;
+    object-fit: cover;
+}
+
+#register form {
+    background-color: #fff;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+#formSuccess,
+#formError {
+    margin-bottom: 1rem;
+}
+
+footer {
+    font-size: 0.95rem;
+}

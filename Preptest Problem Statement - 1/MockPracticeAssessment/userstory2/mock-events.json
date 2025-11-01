@@ -1,0 +1,40 @@
+{
+    "events": [
+        {
+            "id": "evt-101",
+            "title": "Design Thinking Workshop",
+            "category": "Workshop",
+            "date": "2025-12-05T09:00:00",
+            "venue": "Hall A",
+            "status": "UPCOMING",
+            "description": "Hands-on activities to apply design thinking on product ideas."
+        },
+        {
+            "id": "evt-102",
+            "title": "Tech Leadership Summit",
+            "category": "Conference",
+            "date": "2025-11-20T10:00:00",
+            "venue": "Convention Center",
+            "status": "UPCOMING",
+            "description": "Leaders share insights on digital transformation."
+        },
+        {
+            "id": "evt-103",
+            "title": "Annual Gala Night",
+            "category": "Social",
+            "date": "2025-10-10T19:00:00",
+            "venue": "Grand Ballroom",
+            "status": "COMPLETE",
+            "description": "Celebrating key milestones with partners and sponsors."
+        },
+        {
+            "id": "evt-104",
+            "title": "Investor Pitch Day",
+            "category": "Networking",
+            "date": "2025-11-05T14:00:00",
+            "venue": "Studio Stage",
+            "status": "LIVE",
+            "description": "Startups pitch live to a panel of angel investors."
+        }
+    ]
+}

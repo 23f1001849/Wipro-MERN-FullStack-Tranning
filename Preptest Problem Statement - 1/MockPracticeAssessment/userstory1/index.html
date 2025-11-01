@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventia - Event Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="bg-dark text-white">
+        <nav class="navbar navbar-expand-lg navbar-dark container py-3">
+            <a class="navbar-brand fw-bold" href="#home">Eventia</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#highlights">Highlights</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#upcoming">Upcoming</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#register">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main id="home">
+        <section class="hero-section text-center text-lg-start">
+            <div class="container py-5">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-6">
+                        <h1 class="display-5 fw-semibold">Plan, Promote, and Celebrate With Eventia</h1>
+                        <p class="lead">We craft memorable experiences for conferences, weddings, and corporate events with seamless coordination.</p>
+                        <a class="btn btn-primary btn-lg" href="#register">Book a Consultation</a>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <img src="https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=900&q=80" alt="Event collage" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="highlights" class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-semibold">Event Highlights</h2>
+                    <p class="text-muted">A quick look at events we loved working on recently.</p>
+                </div>
+                <div class="row g-4">
+                    <article class="col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" class="card-img-top" alt="Corporate Summit">
+                            <div class="card-body">
+                                <h5 class="card-title">Corporate Summit</h5>
+                                <p class="card-text">End-to-end planning for a 500+ attendee summit with live streaming and breakout sessions.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" class="card-img-top" alt="Tech Expo">
+                            <div class="card-body">
+                                <h5 class="card-title">Tech Expo</h5>
+                                <p class="card-text">A curated experience for 30+ startups showcasing cutting-edge products and demos.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="col-md-4">
+                        <div class="card h-100 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80" class="card-img-top" alt="Wedding Gala">
+                            <div class="card-body">
+                                <h5 class="card-title">Wedding Gala</h5>
+                                <p class="card-text">A bespoke celebration with thematic décor, live entertainment, and guest concierge support.</p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="upcoming" class="py-5">
+            <div class="container">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-6">
+                        <h2 class="fw-semibold">Upcoming Events</h2>
+                        <p class="text-muted">Browse the major events lined up for the next few months.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div id="eventCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="p-4 bg-dark text-white rounded">
+                                        <h5>Startup Mixer</h5>
+                                        <p>Networking evening with venture capitalists and founders. <strong>12 Dec</strong></p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="p-4 bg-primary text-white rounded">
+                                        <h5>Design Conference</h5>
+                                        <p>Workshops and talks around UI/UX trends. <strong>21 Jan</strong></p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="p-4 bg-success text-white rounded">
+                                        <h5>Community Fest</h5>
+                                        <p>Outdoor festival featuring food, music, and art. <strong>10 Feb</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-3">
+                                <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev">
+                                    &larr; Previous
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm" type="button" data-bs-target="#eventCarousel" data-bs-slide="next">
+                                    Next &rarr;
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="register" class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2 class="fw-semibold">Register Your Interest</h2>
+                    <p class="text-muted">Tell us about your occasion and we will reach out within 24 hours.</p>
+                </div>
+                <div class="alert alert-success d-none" id="formSuccess" role="alert"></div>
+                <div class="alert alert-danger d-none" id="formError" role="alert"></div>
+                <form class="row g-3" id="registrationForm" novalidate>
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                        <div class="invalid-feedback">Name is required.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                        <div class="invalid-feedback">Please provide a valid email.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" pattern="[0-9]{10}" required>
+                        <div class="invalid-feedback">Enter a 10-digit phone number.</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="eventType" class="form-label">Event Type</label>
+                        <select id="eventType" name="eventType" class="form-select" required>
+                            <option value="" selected disabled>Select...</option>
+                            <option>Corporate</option>
+                            <option>Wedding</option>
+                            <option>Social</option>
+                            <option>Other</option>
+                        </select>
+                        <div class="invalid-feedback">Please choose an option.</div>
+                    </div>
+                    <div class="col-12">
+                        <label for="details" class="form-label">Event Details</label>
+                        <textarea class="form-control" id="details" name="details" rows="4" placeholder="Tell us more" required></textarea>
+                        <div class="invalid-feedback">Event details help us plan better.</div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="terms" name="terms" value="on" required>
+                            <label class="form-check-label" for="terms">I agree to receive updates and quotes.</label>
+                            <div class="invalid-feedback">Please accept the terms to proceed.</div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center">
+                        <input type="hidden" name="apiEndpoint" value="http://localhost:4000/api/registrations">
+                        <button class="btn btn-primary px-5" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h2 class="fw-semibold">Latest Registrations</h2>
+                    <button class="btn btn-outline-primary btn-sm" id="refreshRegistrations">Refresh</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped" id="registrationsTable">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Event Type</th>
+                                <th scope="col">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="text-muted text-center">No registrations loaded yet.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-6">
+                    <h5>Eventia</h5>
+                    <p class="mb-0">Plot 21, Skyline Towers, Pune, India</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Call: +91 90000 12345 | Email: hello@eventia.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script type="module">
+        import { submitRegistration, loadRecentRegistrations } from './api/register.js';
+
+        const form = document.querySelector('#registrationForm');
+        const successBox = document.querySelector('#formSuccess');
+        const errorBox = document.querySelector('#formError');
+        const refreshButton = document.querySelector('#refreshRegistrations');
+        const tableBody = document.querySelector('#registrationsTable tbody');
+
+        if (form) {
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                if (!form.checkValidity()) {
+                    event.stopPropagation();
+                    form.classList.add('was-validated');
+                    return;
+                }
+
+                form.classList.add('was-validated');
+                setAlert(successBox, '', true);
+                setAlert(errorBox, '', true);
+
+                const submitButton = form.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+
+                const formData = new FormData(form);
+                try {
+                    await submitRegistration(formData);
+                    form.reset();
+                    form.classList.remove('was-validated');
+                    setAlert(successBox, 'Registration saved successfully.');
+                    await refreshRegistrations();
+                } catch (error) {
+                    setAlert(errorBox, error.message || 'Failed to save registration.');
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit';
+                }
+            });
+        }
+
+        if (refreshButton) {
+            refreshButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                refreshRegistrations();
+            });
+        }
+
+        async function refreshRegistrations() {
+            try {
+                const endpoint = form?.querySelector('input[name="apiEndpoint"]').value || 'http://localhost:4000/api/registrations';
+                const registrations = await loadRecentRegistrations(endpoint);
+                renderRegistrations(registrations);
+            } catch (error) {
+                setAlert(errorBox, 'Unable to load registrations. Is the API running?');
+            }
+        }
+
+        function renderRegistrations(registrations = []) {
+            if (!tableBody) return;
+            tableBody.innerHTML = '';
+
+            if (!registrations.length) {
+                tableBody.innerHTML = '<tr><td colspan="5" class="text-muted text-center">No registrations found.</td></tr>';
+                return;
+            }
+
+            const rows = registrations.map((record) => {
+                const date = record.createdAt ? new Date(record.createdAt).toLocaleString() : '—';
+                return `<tr>
+                    <td>${record.name || '—'}</td>
+                    <td>${record.email || '—'}</td>
+                    <td>${record.phone || '—'}</td>
+                    <td>${record.eventType || '—'}</td>
+                    <td>${date}</td>
+                </tr>`;
+            });
+
+            tableBody.innerHTML = rows.join('');
+        }
+
+        function setAlert(element, message, hide = false) {
+            if (!element) return;
+            if (hide || !message) {
+                element.classList.add('d-none');
+                element.textContent = '';
+            } else {
+                element.classList.remove('d-none');
+                element.textContent = message;
+            }
+        }
+
+        refreshRegistrations();
+    </script>
+</body>
+</html>
