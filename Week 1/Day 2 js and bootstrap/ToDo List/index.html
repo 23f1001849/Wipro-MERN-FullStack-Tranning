@@ -1,42 +1,51 @@
 <!-- here we will have all the business logic related to To Do app for HTML -->
- <!-- Following are some user stories based on creating To Do Application -->
- <!-- 1. As a user, I want to add a new task to my To Do list so that I can keep track of my tasks.
- 2. As a user, I want to mark a task as complete so that I can see which tasks I have finished.
- 3. As a user, I want to delete a task from my To Do list so that I can remove tasks I no longer need to do.
- 4. As a user, I want to edit an existing task so that I can update its details.
- 5. As a user, I want to filter tasks by their completion status (e.g., all, active, completed) so that I can focus on specific tasks. -->
-
- <!DOCTYPE html>
- <html lang="en">
- <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Adding external css Link -->
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
- </head>
- <body>
-    <h1>To Do Application</h1>
-    <div>
-        <input type="text" id="taskInput" placeholder="Add a new task">
-        <button id="addTaskButton">Add Task</button>
-        <!-- Creating a delete button -->
-        <button id="deleteTaskButton">Delete Completed Tasks</button>
+    <title>Modern To-Do Manager</title>
+</head>
+<body>
+    <div class="app-shell">
+        <header>
+            <h1>Modern To-Do Manager</h1>
+            <p class="subtitle">Capture tasks, track progress, and stay organised with filters and quick actions.</p>
+        </header>
+
+        <main>
+            <form id="taskForm" autocomplete="off">
+                <label class="sr-only" for="taskInput">Add a new task</label>
+                <input id="taskInput" type="text" placeholder="Add a new task and press Enter" required>
+                <button type="submit" id="addTaskButton">Add Task</button>
+            </form>
+
+            <section class="toolbar" aria-label="Task filters and actions">
+                <div class="filters" role="radiogroup" aria-label="Filter tasks">
+                    <button type="button" data-filter="all" aria-pressed="true">All</button>
+                    <button type="button" data-filter="active" aria-pressed="false">Active</button>
+                    <button type="button" data-filter="completed" aria-pressed="false">Completed</button>
+                </div>
+                <div class="toolbar-actions">
+                    <button type="button" id="clearCompletedButton" class="ghost">Clear completed</button>
+                    <button type="button" id="emptyListButton" class="ghost">Delete all</button>
+                </div>
+            </section>
+
+            <section class="task-pane" aria-live="polite">
+                <ul id="taskList" class="task-list"></ul>
+                <p class="empty-state" id="emptyState">Your list is clear. Add a new task to get started.</p>
+            </section>
+
+            <footer class="summary" id="summary" aria-live="polite">
+                <span><strong>0</strong> tasks</span>
+                <span><strong>0</strong> active</span>
+                <span><strong>0</strong> completed</span>
+            </footer>
+        </main>
     </div>
-    <ul id="taskList">
-        <!-- Task items will be added here dynamically -->
-         <!-- Task will be created/deleted with the help of DOM manipulation when it is required  -->
-    </ul>
 
     <script src="script.js"></script>
-    <!-- calling addTask function -->
-    <script>
-        addTask();
-
-    </script>
-    <!-- calling deleteTask function -->
-    <script>
-        deleteCompletedTasks();
-    </script>
- </body>
- </html>
+</body>
+</html>
