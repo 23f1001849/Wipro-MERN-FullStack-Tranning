@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6 Feature Explorer</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            --ink: #111827;
+            --muted: #4b5563;
+            --surface: #ffffff;
+            --accent: #9333ea;
+            --accent-soft: rgba(147, 51, 234, 0.12);
+            --border: rgba(17, 24, 39, 0.08);
+            --radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 48px 16px 72px;
+            background: linear-gradient(140deg, #f5f3ff, #ede9fe);
+            color: var(--ink);
+        }
+
+        .page {
+            width: min(1024px, 100%);
+            background: var(--surface);
+            border-radius: calc(var(--radius) + 10px);
+            padding: 48px clamp(24px, 5vw, 72px);
+            box-shadow: 0 40px 90px rgba(30, 17, 61, 0.14);
+            display: grid;
+            gap: 40px;
+        }
+
+        header {
+            display: grid;
+            gap: 16px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+        }
+
+        header p {
+            margin: 0 auto;
+            max-width: 720px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pill-list li {
+            padding: 10px 18px;
+            background: var(--accent-soft);
+            border-radius: 999px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        main {
+            display: grid;
+            gap: 36px;
+        }
+
+        .card-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: grid;
+            gap: 16px;
+            transition: border-color 140ms ease, transform 140ms ease;
+        }
+
+        .card:hover {
+            border-color: rgba(147, 51, 234, 0.24);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .snippet {
+            margin: 0;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 18px;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            max-height: 220px;
+            overflow: auto;
+        }
+
+        .snippet code {
+            font-family: Consolas, "Courier New", monospace;
+        }
+
+        button {
+            justify-self: start;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), #4c1d95);
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 140ms ease, box-shadow 140ms ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 20px 32px rgba(147, 51, 234, 0.28);
+        }
+
+        button:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .console {
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 24px;
+            display: grid;
+            gap: 18px;
+            background: rgba(30, 17, 61, 0.04);
+        }
+
+        .console header {
+            text-align: left;
+            gap: 6px;
+        }
+
+        .console header h2 {
+            margin: 0;
+        }
+
+        .consoleLog {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background: #0b1120;
+            color: #e2e8f0;
+            border-radius: 18px;
+            max-height: 260px;
+            overflow: auto;
+        }
+
+        .consoleLog li {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.9rem;
+        }
+
+        .consoleLog li:last-child {
+            border-bottom: none;
+        }
+
+        .console-heading {
+            font-weight: 700;
+            color: #a855f7;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .console-empty {
+            text-align: center;
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 32px 12px 48px;
+                align-items: flex-start;
+            }
+
+            .page {
+                padding: 36px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>ES6 Feature Explorer</h1>
+            <p>Interact with core ES6 capabilities—from spread syntax and arrow functions to classes, Maps, and Sets. Run each demo to inspect the real output in the live console panel.</p>
+            <ul class="pill-list">
+                <li>Spread & rest</li>
+                <li>Arrow functions</li>
+                <li>Destructuring</li>
+                <li>Classes & inheritance</li>
+                <li>Collections</li>
+            </ul>
+        </header>
+
+        <main>
+            <section aria-label="ES6 interactive cards">
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Spread & object updates</h3>
+                        <p>Spread lets you clone arrays or objects and add new values without mutating the original.</p>
+                        <pre class="snippet"><code>const numbers = [1, 2, 3];
+const extended = [...numbers, 4, 5];
+
+const person = { name: "Alice", age: 25 };
+const withCity = { ...person, city: "New York" };
+
+console.log(extended);
+console.log(withCity);</code></pre>
+                        <button type="button" data-demo="spread">Run spread demo</button>
+                    </article>
+
+                    <article class="card">
+                        <h3>Arrow functions & defaults</h3>
+                        <p>Arrow functions keep callbacks concise and pair nicely with default parameters.</p>
+                        <pre class="snippet"><code>const add = (a, b = 0) => a + b;
+const facts = ["fast", "portable", "expressive"];
+
+const summary = facts.map((fact, index) =>
+  `${index + 1}. ES6 is ${fact}`
+);
+
+console.log(add(4, 6));
+console.log(summary.join("\n"));</code></pre>
+                        <button type="button" data-demo="arrows">Run arrow demo</button>
+                    </article>
+
+                    <article class="card">
+                        <h3>Classes & inheritance</h3>
+                        <p>ES6 classes encapsulate state and behaviour; <code>extends</code> helps you reuse logic smoothly.</p>
+                        <pre class="snippet"><code>class Person {
+  constructor(name, role) {
+    this.name = name;
+    this.role = role;
+  }
+  describe() {
+    return `${this.name} works as ${this.role}.`;
+  }
+}
+
+class Mentor extends Person {
+  constructor(name, role, topics) {
+    super(name, role);
+    this.topics = topics;
+  }
+  intro() {
+    return `${this.describe()} Teaches ${this.topics.join(", ")}.`;
+  }
+}</code></pre>
+                        <button type="button" data-demo="classes">Run classes demo</button>
+                    </article>
+
+                    <article class="card">
+                        <h3>Map & Set collections</h3>
+                        <p>Maps store keyed data, Sets keep unique values—ideal for caching, tagging, and membership checks.</p>
+                        <pre class="snippet"><code>const languages = new Map([
+  ["JS", "JavaScript"],
+  ["TS", "TypeScript"],
+]);
+
+const attendees = new Set(["Alice", "Bob", "Alice"]);
+
+console.log([...languages.entries()]);
+console.log(attendees.size);
+console.log(attendees.has("Bob"));</code></pre>
+                        <button type="button" data-demo="collections">Run collections demo</button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="console" aria-label="Live ES6 console">
+                <header>
+                    <h2>Live console</h2>
+                    <p class="muted">Each card prints its output here. Think of it as a developer console you can use without leaving the page.</p>
+                </header>
+                <button type="button" id="clearConsole">Clear console</button>
+                <ul id="output" class="consoleLog" aria-live="polite">
+                    <li class="console-empty">Hit any "Run" button to populate the console with ES6 output.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const output = document.getElementById("output");
+        const clearButton = document.getElementById("clearConsole");
+
+        const demos = {
+            spread() {
+                const logs = [];
+                const numbers = [1, 2, 3];
+                const extended = [...numbers, 4, 5, 6];
+                logs.push(`Original numbers: [${numbers.join(", ")}]`);
+                logs.push(`Extended numbers: [${extended.join(", ")}]`);
+
+                const person = { name: "Alice", age: 25 };
+                const withCity = { ...person, city: "New York" };
+                logs.push(`Person snapshot: ${JSON.stringify(person)}`);
+                logs.push(`Updated with city: ${JSON.stringify(withCity)}`);
+
+                const student = { name: "Bob", age: 20 };
+                const studentWithId = { ...student, id: 123 };
+                logs.push(`Student with id: ${JSON.stringify(studentWithId)}`);
+                return logs;
+            },
+            arrows() {
+                const logs = [];
+                const add = (a, b = 0) => a + b;
+                logs.push(`Add with default: add(4) = ${add(4)}`);
+                logs.push(`Add with both values: add(4, 6) = ${add(4, 6)}`);
+
+                const items = [5, 9, 13];
+                const squares = items.map((value, index) => ({ index, square: value ** 2 }));
+                logs.push(`Squares via arrow function: ${JSON.stringify(squares)}`);
+
+                const tag = (strings, ...values) => strings.reduce((result, fragment, i) => {
+                    const value = values[i] !== undefined ? String(values[i]).toUpperCase() : "";
+                    return `${result}${fragment}${value}`;
+                }, "");
+
+                const message = tag`ES6 syntax feels ${"cool"} and ${"productive"}!`;
+                logs.push(`Tagged template output: ${message}`);
+                return logs;
+            },
+            classes() {
+                const logs = [];
+                class Person {
+                    constructor(name, role) {
+                        this.name = name;
+                        this.role = role;
+                    }
+                    describe() {
+                        return `${this.name} works as ${this.role}.`;
+                    }
+                }
+
+                class Mentor extends Person {
+                    constructor(name, role, topics) {
+                        super(name, role);
+                        this.topics = topics;
+                    }
+                    intro() {
+                        return `${this.describe()} Loves teaching ${this.topics.join(", ")}.`;
+                    }
+                }
+
+                const harsha = new Person("Harsha", "Frontend Developer");
+                logs.push(harsha.describe());
+
+                const meena = new Mentor("Meena", "Tech Mentor", ["ES6", "TypeScript", "React"]);
+                logs.push(meena.intro());
+
+                logs.push(`"instanceof" checks: Person? ${meena instanceof Person}, Mentor? ${meena instanceof Mentor}`);
+                return logs;
+            },
+            collections() {
+                const logs = [];
+                const languages = new Map([
+                    ["JS", "JavaScript"],
+                    ["TS", "TypeScript"],
+                    ["PY", "Python"],
+                ]);
+                logs.push(`Map size: ${languages.size}`);
+                for (const [short, full] of languages) {
+                    logs.push(`${short} → ${full}`);
+                }
+
+                const attendees = new Set(["Alice", "Bob", "Alice", "Fatima"]);
+                logs.push(`Unique attendees: ${[...attendees].join(", ")}`);
+                logs.push(`Has Fatima? ${attendees.has("Fatima")}`);
+
+                attendees.delete("Bob");
+                logs.push(`After removal: ${[...attendees].join(", ")}`);
+                return logs;
+            },
+        };
+
+        const ensureConsoleReady = () => {
+            const emptyItem = output.querySelector(".console-empty");
+            if (emptyItem) {
+                emptyItem.remove();
+            }
+        };
+
+        const appendHeading = (title) => {
+            const heading = document.createElement("li");
+            heading.className = "console-heading";
+            heading.textContent = `${title} — ${new Date().toLocaleTimeString()}`;
+            output.appendChild(heading);
+        };
+
+        const appendLine = (message) => {
+            const line = document.createElement("li");
+            line.textContent = message;
+            output.appendChild(line);
+        };
+
+        const runDemo = (key) => {
+            const demo = demos[key];
+            if (!demo) {
+                return;
+            }
+            ensureConsoleReady();
+            appendHeading(`▶ ${key} demo`);
+            demo().forEach((entry) => appendLine(entry));
+            output.scrollTo({ top: output.scrollHeight, behavior: "smooth" });
+        };
+
+        document.querySelectorAll("[data-demo]").forEach((button) => {
+            button.addEventListener("click", () => {
+                button.disabled = true;
+                runDemo(button.dataset.demo);
+                setTimeout(() => {
+                    button.disabled = false;
+                }, 400);
+            });
+        });
+
+        clearButton.addEventListener("click", () => {
+            output.innerHTML = "";
+            const empty = document.createElement("li");
+            empty.className = "console-empty";
+            empty.textContent = "Console cleared. Run a card again to repopulate.";
+            output.appendChild(empty);
+        });
+    </script>
+</body>
+</html>

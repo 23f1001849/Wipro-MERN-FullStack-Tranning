@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async & Await Playground</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            --ink: #0f172a;
+            --muted: #475569;
+            --surface: #ffffff;
+            --accent: #2563eb;
+            --accent-soft: rgba(37, 99, 235, 0.12);
+            --border: rgba(15, 23, 42, 0.08);
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 48px 16px 72px;
+            background: linear-gradient(135deg, #f8fafc, #e0f2fe);
+            color: var(--ink);
+        }
+
+        .page {
+            width: min(960px, 100%);
+            background: var(--surface);
+            border-radius: calc(var(--radius) + 8px);
+            padding: 48px clamp(24px, 5vw, 64px);
+            box-shadow: 0 40px 90px rgba(15, 23, 42, 0.12);
+            display: grid;
+            gap: 40px;
+        }
+
+        header {
+            display: grid;
+            gap: 12px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(2.2rem, 4vw, 3rem);
+        }
+
+        header p {
+            margin: 0 auto;
+            max-width: 640px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        main {
+            display: grid;
+            gap: 40px;
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .pill-list li {
+            padding: 10px 18px;
+            background: var(--accent-soft);
+            border-radius: 999px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .playground {
+            display: grid;
+            gap: 24px;
+        }
+
+        .card-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: grid;
+            gap: 16px;
+            transition: border-color 140ms ease, transform 140ms ease;
+        }
+
+        .card:hover {
+            border-color: rgba(37, 99, 235, 0.24);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        button {
+            justify-self: start;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), #1d4ed8);
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 140ms ease, box-shadow 140ms ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 20px 32px rgba(37, 99, 235, 0.28);
+        }
+
+        .status {
+            font-size: 0.9rem;
+            color: var(--muted);
+            min-height: 20px;
+        }
+
+        pre {
+            margin: 0;
+            max-height: 240px;
+            overflow: auto;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: Consolas, "Courier New", monospace;
+        }
+
+        .tips {
+            border-radius: var(--radius);
+            padding: 32px;
+            background: rgba(37, 99, 235, 0.08);
+            display: grid;
+            gap: 14px;
+        }
+
+        .tips h2 {
+            margin: 0;
+        }
+
+        .tips ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 32px 12px 48px;
+                align-items: flex-start;
+            }
+
+            .page {
+                padding: 36px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Async/Await Playground</h1>
+            <p>Async/await lets you write asynchronous JavaScript that reads like synchronous code. Explore the pattern with practical examples, live API calls, and friendly error handling.</p>
+            <ul class="pill-list">
+                <li>async keyword</li>
+                <li>await keyword</li>
+                <li>Promises</li>
+                <li>try/catch</li>
+                <li>Promise.all</li>
+            </ul>
+        </header>
+
+        <main>
+            <section class="playground" aria-label="Interactive async examples">
+                <h2>Try the patterns</h2>
+                <div class="card-grid">
+                    <article class="card" id="simulate-card">
+                        <h3>Simulated delay (2 seconds)</h3>
+                        <p>Use <code>await</code> with a Promise-based delay to pause execution without blocking the main thread.</p>
+                        <button type="button" id="simulateButton">Run simulation</button>
+                        <span class="status" id="simulateStatus"></span>
+                        <pre id="simulateOutput"></pre>
+                    </article>
+
+                    <article class="card" id="comments-card">
+                        <h3>Fetch comments from an API</h3>
+                        <p>Async functions shine with network requests. The code awaits both the response and the JSON parsing stage.</p>
+                        <button type="button" id="commentsButton">Load comments</button>
+                        <span class="status" id="commentsStatus"></span>
+                        <pre id="commentsOutput"></pre>
+                    </article>
+
+                    <article class="card" id="combined-card">
+                        <h3>Parallel requests with Promise.all</h3>
+                        <p>Await multiple asynchronous operations together. All succeed, or an error is reported once.</p>
+                        <button type="button" id="combinedButton">Fetch comments & users</button>
+                        <span class="status" id="combinedStatus"></span>
+                        <pre id="combinedOutput"></pre>
+                    </article>
+                </div>
+            </section>
+
+            <section class="tips" aria-label="Helpful reminders">
+                <h2>Remember</h2>
+                <ul>
+                    <li><code>async</code> functions always return a Promise, so results remain awaitable by callers.</li>
+                    <li><code>await</code> pauses only the current async function, letting the event loop continue serving other tasks.</li>
+                    <li>Wrap awaits in <code>try/catch</code> to surface network or parsing failures gracefully.</li>
+                    <li>Combine multiple awaits with <code>Promise.all</code> when tasks can run side by side.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const simulateButton = document.getElementById("simulateButton");
+        const simulateStatus = document.getElementById("simulateStatus");
+        const simulateOutput = document.getElementById("simulateOutput");
+
+        const commentsButton = document.getElementById("commentsButton");
+        const commentsStatus = document.getElementById("commentsStatus");
+        const commentsOutput = document.getElementById("commentsOutput");
+
+        const combinedButton = document.getElementById("combinedButton");
+        const combinedStatus = document.getElementById("combinedStatus");
+        const combinedOutput = document.getElementById("combinedOutput");
+
+        const api = "https://jsonplaceholder.typicode.com";
+
+        const logStatus = (target, message) => {
+            target.textContent = message;
+        };
+
+        const renderJSON = (target, data) => {
+            target.textContent = JSON.stringify(data, null, 2);
+        };
+
+        const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+        simulateButton.addEventListener("click", async () => {
+            logStatus(simulateStatus, "Waiting for the Promise to resolve...");
+            renderJSON(simulateOutput, "");
+            simulateButton.disabled = true;
+
+            try {
+                const startedAt = new Date().toLocaleTimeString();
+                await sleep(2000);
+                const finishedAt = new Date().toLocaleTimeString();
+                renderJSON(simulateOutput, {
+                    message: "Resolved after 2 seconds",
+                    startedAt,
+                    finishedAt,
+                });
+                logStatus(simulateStatus, "Simulation complete.");
+            } finally {
+                simulateButton.disabled = false;
+            }
+        });
+
+        commentsButton.addEventListener("click", async () => {
+            await loadComments();
+        });
+
+        combinedButton.addEventListener("click", async () => {
+            await loadCombinedData();
+        });
+
+        async function loadComments() {
+            logStatus(commentsStatus, "Fetching comments...");
+            renderJSON(commentsOutput, "");
+            commentsButton.disabled = true;
+
+            try {
+                const response = await fetch(`${api}/comments?_limit=5`);
+                if (!response.ok) {
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+                const comments = await response.json();
+                renderJSON(commentsOutput, comments);
+                logStatus(commentsStatus, "Fetched 5 comments.");
+            } catch (error) {
+                logStatus(commentsStatus, `Error: ${error.message}`);
+            } finally {
+                commentsButton.disabled = false;
+            }
+        }
+
+        async function loadCombinedData() {
+            logStatus(combinedStatus, "Fetching comments and users in parallel...");
+            renderJSON(combinedOutput, "");
+            combinedButton.disabled = true;
+
+            try {
+                const [commentsResponse, usersResponse] = await Promise.all([
+                    fetch(`${api}/comments?_limit=3`),
+                    fetch(`${api}/users?_limit=3`),
+                ]);
+
+                if (!commentsResponse.ok || !usersResponse.ok) {
+                    throw new Error("One of the responses returned an error status");
+                }
+
+                const [comments, users] = await Promise.all([
+                    commentsResponse.json(),
+                    usersResponse.json(),
+                ]);
+
+                renderJSON(combinedOutput, { comments, users });
+                logStatus(combinedStatus, "Fetched both resources successfully.");
+            } catch (error) {
+                logStatus(combinedStatus, `Error: ${error.message}`);
+            } finally {
+                combinedButton.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
+
+      

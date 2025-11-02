@@ -3,97 +3,462 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ES6 Features Demo</title>
+    <title>ES6 Feature Studio</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            --ink: #0f172a;
+            --muted: #475569;
+            --surface: #ffffff;
+            --accent: #16a34a;
+            --accent-soft: rgba(22, 163, 74, 0.12);
+            --border: rgba(15, 23, 42, 0.08);
+            --radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 48px 16px 72px;
+            background: linear-gradient(135deg, #f1f5f9, #d1fae5);
+            color: var(--ink);
+        }
+
+        .page {
+            width: min(1024px, 100%);
+            background: var(--surface);
+            border-radius: calc(var(--radius) + 10px);
+            padding: 48px clamp(24px, 5vw, 72px);
+            box-shadow: 0 40px 90px rgba(15, 23, 42, 0.14);
+            display: grid;
+            gap: 40px;
+        }
+
+        header {
+            display: grid;
+            gap: 14px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+        }
+
+        header p {
+            margin: 0 auto;
+            max-width: 700px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .pill-list li {
+            padding: 10px 18px;
+            background: var(--accent-soft);
+            border-radius: 999px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        main {
+            display: grid;
+            gap: 36px;
+        }
+
+        .card-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: grid;
+            gap: 16px;
+            transition: border-color 140ms ease, transform 140ms ease;
+        }
+
+        .card:hover {
+            border-color: rgba(22, 163, 74, 0.26);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .snippet {
+            margin: 0;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 18px;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            max-height: 200px;
+            overflow: auto;
+        }
+
+        .snippet code {
+            font-family: Consolas, "Courier New", monospace;
+        }
+
+        button {
+            justify-self: start;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), #0f766e);
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 140ms ease, box-shadow 140ms ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 20px 32px rgba(22, 163, 74, 0.24);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .console {
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 24px;
+            display: grid;
+            gap: 16px;
+            background: rgba(15, 23, 42, 0.035);
+        }
+
+        .console header {
+            text-align: left;
+            gap: 6px;
+        }
+
+        .console-log {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background: #0b1120;
+            color: #e2e8f0;
+            border-radius: 18px;
+            max-height: 260px;
+            overflow: auto;
+        }
+
+        .console-log li {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.9rem;
+        }
+
+        .console-log li:last-child {
+            border-bottom: none;
+        }
+
+        .console-heading {
+            font-weight: 700;
+            color: #34d399;
+        }
+
+        .console-empty {
+            text-align: center;
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 32px 12px 48px;
+                align-items: flex-start;
+            }
+
+            .page {
+                padding: 36px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>ES6 Features Demonstration</h1>
+    <div class="page">
+        <header>
+            <h1>ES6 Feature Studio</h1>
+            <p>Explore modern JavaScript essentials with concise examples. Trigger each demo to see how ES6 syntax makes your code more expressive, modular, and friendly.</p>
+            <ul class="pill-list">
+                <li>let & const</li>
+                <li>Template literals</li>
+                <li>Arrow functions</li>
+                <li>Classes & inheritance</li>
+                <li>Map & Set collections</li>
+            </ul>
+        </header>
+
+        <main>
+            <section aria-label="ES6 feature demos">
+                <div class="card-grid">
+                    <article class="card">
+                        <h3>Block scope & string templates</h3>
+                        <p>Work with <code>let</code>/<code>const</code>, template literals, and object destructuring without leaking variables.</p>
+                        <pre class="snippet"><code>const pi = Math.PI;
+const radius = 5;
+const area = (pi * radius ** 2).toFixed(2);
+
+const user = { firstName: "John", lastName: "Doe" };
+const { firstName, lastName } = user;
+
+console.log(`Area: ${area}`);
+console.log(`Name: ${firstName} ${lastName}`);</code></pre>
+                        <button type="button" data-demo="basics">Run basics demo</button>
+                    </article>
+
+                    <article class="card">
+                        <h3>Arrow functions & spread syntax</h3>
+                        <p>Arrow functions pair well with default parameters and the spread operator for concise data work.</p>
+                        <pre class="snippet"><code>const square = (x) => x * x;
+const multiply = (a, b = 2) => a * b;
+
+const numbers = [1, 2, 3];
+const more = [...numbers, 4, 5];
+
+console.log(square(4));
+console.log(multiply(5));
+console.log(more);</code></pre>
+                        <button type="button" data-demo="functions">Run functions demo</button>
+                    </article>
+
+                    <article class="card">
+                        <h3>Classes & inheritance</h3>
+                        <p>ES6 classes wrap constructors and methods in a friendly syntax, including inheritance via <code>extends</code>.</p>
+                        <pre class="snippet"><code>class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    return `${this.name} makes a noise.`;
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    return `${this.name} barks.`;
+  }
+}
+
+new Dog("Rex").speak();</code></pre>
+                        <button type="button" data-demo="classes">Run classes demo</button>
+                    </article>
+
+                    <article class="card">
+                        <h3>Map & Set collections</h3>
+                        <p>Leverage <code>Map</code> for key-value lookups and <code>Set</code> for unique lists without manual deduping.</p>
+                        <pre class="snippet"><code>const capitals = new Map([
+  ["USA", "Washington, D.C."],
+  ["Canada", "Ottawa"],
+]);
+
+const visited = new Set(["Tokyo", "Berlin", "Tokyo"]);
+
+console.log([...capitals.entries()]);
+console.log([...visited]);</code></pre>
+                        <button type="button" data-demo="collections">Run collections demo</button>
+                    </article>
+                </div>
+            </section>
+
+            <section class="console" aria-label="Live console output">
+                <header>
+                    <h2>Live JS console</h2>
+                    <p class="muted">Every demo prints its results here. Use it like an in-page developer console.</p>
+                </header>
+                <button type="button" id="clearConsole">Clear console</button>
+                <ul id="jsConsole" class="console-log" aria-live="polite">
+                    <li class="console-empty">No output yet. Run a demo to see ES6 in action.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
     <script>
-        // Example of let and const
-        const pi = 3.14;
-        let radius = 5;
-        let area = pi * radius * radius;
-        console.log(`Area of circle with radius ${radius} is ${area}`);
+        const consoleLog = document.getElementById("jsConsole");
+        const clearButton = document.getElementById("clearConsole");
 
-        // Example of arrow functions
-        const square = (x) => x * x;
-        console.log(`Square of 4 is ${square(4)}`);
+        const demos = {
+            basics() {
+                const results = [];
+                const pi = Math.PI;
+                const radius = 5;
+                const area = (pi * radius * radius).toFixed(2);
+                results.push(`Area of a circle with radius ${radius}: ${area}`);
 
-        // Example of template literals
-        const name = "Alice";
-        const greeting = `Hello, ${name}! Welcome to ES6 features demo.`;
-        console.log(greeting);
+                const user = { firstName: "John", lastName: "Doe" };
+                const { firstName, lastName } = user;
+                results.push(`Destructured name: ${firstName} ${lastName}`);
 
-        // Example of destructuring
-        const person = { firstName: "John", lastName: "Doe" };
-        const { firstName, lastName } = person;
-        console.log(`First Name: ${firstName}, Last Name: ${lastName}`);
+                const message = `Hey ${firstName}, modern JS feels great!`;
+                results.push(message);
 
-        // Example of default parameters
-        function multiply(a, b = 2) {
-            return a * b;
-        }
-        console.log(`Multiply 5 with default parameter: ${multiply(5)}`);
-        console.log(`Multiply 5 and 3: ${multiply(5, 3)}`);
-        // Example of spread operator
-        const arr1 = [1, 2, 3];
-        const arr2 = [4, 5, 6];
-        const combined = [...arr1, ...arr2];
-        console.log("Combined Array:", combined);
-    </script>
-    <script>
-        // Example of classes
-        class Animal {
-            constructor(name) {
-                this.name = name;
-            }
-            speak() {
-                console.log(`${this.name} makes a noise.`);
-            }
-        }
+                return results;
+            },
+            functions() {
+                const results = [];
+                const regularSquare = function (x) {
+                    return x * x;
+                };
+                const arrowSquare = (x) => x * x;
+                results.push(`Regular square of 5: ${regularSquare(5)}`);
+                results.push(`Arrow square of 5: ${arrowSquare(5)}`);
 
-        class Dog extends Animal {
-            speak() {
-                console.log(`${this.name} barks.`);
-            }
-        }
+                const multiply = (a, b = 2) => a * b;
+                results.push(`Multiply with default (5 * 2): ${multiply(5)}`);
+                results.push(`Multiply with custom (5 * 3): ${multiply(5, 3)}`);
 
-        const dog = new Dog('Rex');
-        dog.speak();
-        // show output in dialog
-        alert(`Dog's Speak Method Output: ${dog.name} barks.`);
+                const initial = [1, 2, 3];
+                const combined = [...initial, 4, 5, 6];
+                results.push(`Spread combined array: [${combined.join(", ")}].`);
 
-    </script>
-    <script>
-        // arrow function vs regular function square
-        const regularSquare = function(x) {
-            return x * x;
+                return results;
+            },
+            classes() {
+                const results = [];
+                class Animal {
+                    constructor(name) {
+                        this.name = name;
+                    }
+                    speak() {
+                        return `${this.name} makes a noise.`;
+                    }
+                }
+
+                class Dog extends Animal {
+                    speak() {
+                        return `${this.name} barks.`;
+                    }
+                }
+
+                const rex = new Dog("Rex");
+                results.push(rex.speak());
+
+                class ServiceDog extends Dog {
+                    constructor(name, duty) {
+                        super(name);
+                        this.duty = duty;
+                    }
+                    report() {
+                        return `${this.name} is on ${this.duty} duty.`;
+                    }
+                }
+
+                const scout = new ServiceDog("Scout", "search and rescue");
+                results.push(scout.report());
+                results.push(`Calling base method: ${scout.speak()}`);
+
+                return results;
+            },
+            collections() {
+                const results = [];
+                const capitals = new Map([
+                    ["USA", "Washington, D.C."],
+                    ["Canada", "Ottawa"],
+                    ["Mexico", "Mexico City"],
+                ]);
+                results.push(`Countries stored: ${capitals.size}`);
+                for (const [country, capital] of capitals.entries()) {
+                    results.push(`${country} → ${capital}`);
+                }
+
+                const visited = new Set(["Tokyo", "Berlin", "Tokyo", "Lisbon"]);
+                results.push(`Unique cities visited: ${[...visited].join(", ")}`);
+
+                const hasLisbon = visited.has("Lisbon");
+                results.push(`Set lookup for Lisbon: ${hasLisbon}`);
+
+                return results;
+            },
         };
 
-        const arrowSquare = (x) => x * x;
-        console.log(`Regular Square of 5: ${regularSquare(5)}`);
-        console.log(`Arrow Square of 5: ${arrowSquare(5)}`);
-    </script>
-    <script>
-        //map() to create a map of countries and their capitals
-        const countries = new Map();
-        countries.set("USA", "Washington, D.C.");
-        countries.set("Canada", "Ottawa");
-        countries.set("Mexico", "Mexico City");
-        console.log("Countries and their capitals:");
-        countries.forEach((capital, country) => {
-            console.log(`${country}: ${capital}`);
+        const writeHeading = (title) => {
+            const heading = document.createElement("li");
+            heading.className = "console-heading";
+            heading.textContent = `${title} — ${new Date().toLocaleTimeString()}`;
+            consoleLog.appendChild(heading);
+        };
+
+        const writeLine = (message) => {
+            const line = document.createElement("li");
+            line.textContent = message;
+            consoleLog.appendChild(line);
+        };
+
+        const ensureNotEmpty = () => {
+            const emptyState = consoleLog.querySelector(".console-empty");
+            if (emptyState) {
+                emptyState.remove();
+            }
+        };
+
+        const runDemo = (key) => {
+            const demo = demos[key];
+            if (!demo) {
+                return;
+            }
+            ensureNotEmpty();
+            writeHeading(`▶ ${key} demo`);
+            demo().forEach((entry) => writeLine(entry));
+            consoleLog.scrollTo({ top: consoleLog.scrollHeight, behavior: "smooth" });
+        };
+
+        document.querySelectorAll("[data-demo]").forEach((button) => {
+            button.addEventListener("click", () => {
+                button.disabled = true;
+                runDemo(button.dataset.demo);
+                setTimeout(() => {
+                    button.disabled = false;
+                }, 400);
+            });
         });
-        alert(`Countries and their capitals:\n${Array.from(countries).map(([country, capital]) => `${country}: ${capital}`).join("\n")}`);
-    </script>
-    <script>
-        // create a set of cities and display them
-        const cities = new Set();
-        cities.add("New York");
-        cities.add("Los Angeles");
-        cities.add("Chicago");
-        console.log("Cities in the set:");
-        cities.forEach(city => console.log(city));
-        alert(`Cities in the set: ${Array.from(cities).join(", ")}`);
+
+        clearButton.addEventListener("click", () => {
+            consoleLog.innerHTML = "";
+            const empty = document.createElement("li");
+            empty.className = "console-empty";
+            empty.textContent = "Console cleared. Run another demo to see output.";
+            consoleLog.appendChild(empty);
+        });
     </script>
 </body>
 </html>
