@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML5 Elements Playground</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #f1f5f9;
+            color: #1f2937;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            display: grid;
+            grid-template-columns: minmax(280px, 1fr);
+            justify-items: center;
+            padding: 48px 18px 72px;
+        }
+
+        .layout {
+            width: min(1000px, 100%);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+        }
+
+        header.site-header {
+            background: linear-gradient(135deg, #60a5fa, #6366f1);
+            color: #fff;
+            border-radius: 22px;
+            padding: 40px 32px;
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.25);
+        }
+
+        header.site-header p {
+            margin: 12px 0 0;
+            line-height: 1.6;
+            max-width: 680px;
+        }
+
+        nav.main-nav {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.1);
+            padding: 16px 20px;
+            position: sticky;
+            top: 16px;
+            z-index: 10;
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav.main-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: #1f2937;
+            background: #e2e8f0;
+            transition: transform 160ms ease, background-color 160ms ease;
+        }
+
+        nav.main-nav a:hover {
+            transform: translateY(-2px);
+            background: #bfdbfe;
+        }
+
+        main {
+            display: grid;
+            gap: 28px;
+        }
+
+        section.card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 28px 32px;
+            box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+            display: grid;
+            gap: 18px;
+        }
+
+        section.card h2 {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        article {
+            background: #f1f5f9;
+            border-radius: 18px;
+            padding: 20px 24px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .content-layout {
+            display: grid;
+            gap: 24px;
+        }
+
+        @media (min-width: 830px) {
+            .content-layout {
+                grid-template-columns: 2fr 1fr;
+                align-items: start;
+            }
+        }
+
+        aside {
+            background: #f8fafc;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.1);
+            display: grid;
+            gap: 14px;
+        }
+
+        details {
+            background: #fff;
+            border-radius: 14px;
+            padding: 16px 20px;
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.08);
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        figure {
+            background: #f8fafc;
+            border-radius: 18px;
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        .data-extras {
+            display: grid;
+            gap: 14px;
+        }
+
+        progress,
+        meter {
+            width: 100%;
+        }
+
+        footer.site-footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        code {
+            background: rgba(148, 163, 184, 0.2);
+            padding: 4px 6px;
+            border-radius: 8px;
+            font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+            font-size: 0.95rem;
+        }
+
+        video,
+        audio {
+            width: 100%;
+            border-radius: 14px;
+            background: #000;
+        }
+
+        .media-grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        mark {
+            background: #fde68a;
+            border-radius: 4px;
+            padding: 0 4px;
+        }
+
+        blockquote {
+            margin: 0;
+            padding-left: 16px;
+            border-left: 4px solid #60a5fa;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <header class="site-header">
+            <p class="badge">SEMANTIC HTML · ACCESSIBLE STRUCTURE · RICH MEDIA SUPPORT</p>
+            <h1>HTML5 Elements Playground</h1>
+            <p>Explore the most common HTML5 semantic, interactive, and multimedia tags used to build modern documents. Inspect the markup to see how structure and accessibility come together.</p>
+        </header>
+
+        <nav class="main-nav" aria-label="Primary">
+            <ul>
+                <li><a href="#semantic">Semantic Layout</a></li>
+                <li><a href="#article">Article & Aside</a></li>
+                <li><a href="#media">Audio · Video</a></li>
+                <li><a href="#interactive">Interactive Widgets</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="semantic" class="card" aria-labelledby="semantic-title">
+                <h2 id="semantic-title">Semantic Layout Elements</h2>
+                <p>HTML5 introduced dedicated tags to describe document regions, improving readability for humans and assistive tech.</p>
+                <div class="content-layout">
+                    <article>
+                        <header>
+                            <h3>Planetary Science Headline</h3>
+                            <p><time datetime="2025-11-02">November 2, 2025</time> &middot; Written by <span>Harshal</span></p>
+                        </header>
+                        <p>NASA engineers announced a <mark>major breakthrough</mark> in reusable launch systems that could reduce the cost of deep space exploration by 40%.</p>
+                        <blockquote>
+                            "HTML5 gives writers the tools to pair content with meaning, so browsers can understand more than just presentation," said Dr. Rivera during the press briefing.
+                        </blockquote>
+                        <p>New semantic tags like <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, and <code>&lt;aside&gt;</code> separate topics while <code>&lt;header&gt;</code> and <code>&lt;footer&gt;</code> describe supporting details.</p>
+                        <footer>
+                            <p>Tags covered: <code>header</code>, <code>article</code>, <code>section</code>, <code>footer</code>, <code>time</code>, <code>mark</code>.</p>
+                        </footer>
+                    </article>
+                    <aside>
+                        <h4>Why semantics matter</h4>
+                        <ul>
+                            <li>Screen readers build navigation landmarks automatically.</li>
+                            <li>Search engines understand content structure better.</li>
+                            <li>CSS hooks become clearer for future maintainers.</li>
+                        </ul>
+                        <details>
+                            <summary>Bonus elements</summary>
+                            <p>Use <code>&lt;main&gt;</code> for the document's primary content, while <code>&lt;nav&gt;</code> highlights navigation links. <code>&lt;aside&gt;</code> works for tangential information or callouts.</p>
+                        </details>
+                    </aside>
+                </div>
+            </section>
+
+            <section id="article" class="card" aria-labelledby="figure-title">
+                <h2 id="figure-title">Figures & Captions</h2>
+                <p>Wrap media with <code>&lt;figure&gt;</code> to pair visuals and captions without affecting the main flow.</p>
+                <figure>
+                    <img src="https://placehold.co/640x360/png" alt="Placeholder skyline illustration" width="640" height="360" style="max-width: 100%; border-radius: 12px;">
+                    <figcaption>Sample image embedded using semantic <code>figure</code> and <code>figcaption</code> elements.</figcaption>
+                </figure>
+            </section>
+
+            <section id="media" class="card" aria-labelledby="media-title">
+                <h2 id="media-title">Multimedia Elements</h2>
+                <p>Add native controls for rich media with <code>&lt;audio&gt;</code> and <code>&lt;video&gt;</code> while providing fallbacks for unsupported formats.</p>
+                <div class="media-grid">
+                    <div>
+                        <h3>Demo Video</h3>
+                        <video controls preload="metadata" poster="https://placehold.co/640x360/png?text=Video+Poster">
+                            <source src="sample-video.mp4" type="video/mp4">
+                            <p>Your browser does not support HTML5 video. <a href="sample-video.mp4">Download the clip.</a></p>
+                        </video>
+                    </div>
+                    <div>
+                        <h3>Podcast Snippet</h3>
+                        <audio controls preload="none">
+                            <source src="sample-audio.mp3" type="audio/mpeg">
+                            <p>Your browser does not support HTML5 audio. <a href="sample-audio.mp3">Download the episode.</a></p>
+                        </audio>
+                    </div>
+                </div>
+            </section>
+
+            <section id="interactive" class="card" aria-labelledby="interactive-title">
+                <h2 id="interactive-title">Interactive & Data Elements</h2>
+                <p>HTML5 shipped with form-friendly and data-centric elements to convey progress, measurements, and disclosure sections.</p>
+                <div class="data-extras">
+                    <label for="download-progress">Download Progress</label>
+                    <progress id="download-progress" value="45" max="100">45%</progress>
+
+                    <label for="fuel-meter">Fuel Level</label>
+                    <meter id="fuel-meter" min="0" max="100" low="25" high="75" optimum="90" value="68">68%</meter>
+
+                    <details open>
+                        <summary>Sample Disclosure Widget</summary>
+                        <p>This collapsible panel uses the <code>details</code> and <code>summary</code> tags. Browsers animate the toggle while exposing the state to accessibility tools.</p>
+                    </details>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <p>&copy; <time datetime="2025">2025</time> HTML5 Elements Playground. Crafted to highlight the tags you will reach for daily.</p>
+        </footer>
+    </div>
+</body>
+</html>

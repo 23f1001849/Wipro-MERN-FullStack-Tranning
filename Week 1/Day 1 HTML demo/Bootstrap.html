@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Quickstart Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2eafc 45%, #f8fafc 100%);
+            color: #1f2937;
+        }
+
+        .lead-badge {
+            letter-spacing: 0.09em;
+        }
+
+        .feature-card {
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 32px rgba(15, 23, 42, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <header class="container py-5 text-center">
+        <span class="badge text-bg-primary lead-badge mb-3">Created by Twitter · Responsive First</span>
+        <h1 class="display-5 fw-semibold">Bootstrap Quickstart</h1>
+        <p class="lead mx-auto" style="max-width: 720px;">Drop-in CSS and JavaScript utilities, components, and layout helpers for building modern, responsive sites faster. Include the CDN link above and start composing interfaces with ready-made building blocks.</p>
+    </header>
+
+    <main class="container pb-5">
+        <section class="row g-4 mb-5">
+            <div class="col-md-4">
+                <div class="feature-card h-100 bg-white border-0 shadow-sm rounded-4 p-4">
+                    <h2 class="h4 fw-semibold mb-3">Layout Utilities</h2>
+                    <p class="mb-3">Use <code>.container</code>, <code>.row</code>, and <code>.col</code> to create fluid grids that adapt to every breakpoint.</p>
+                    <ul class="list-unstyled small mb-0 text-muted">
+                        <li class="mb-2">Flexbox helpers <code>.d-flex</code>, <code>.justify-content-*</code></li>
+                        <li class="mb-2">Spacing system via <code>.p-*</code>, <code>.m-*</code></li>
+                        <li>Responsive display toggles like <code>.d-md-none</code></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card h-100 bg-white border-0 shadow-sm rounded-4 p-4">
+                    <h2 class="h4 fw-semibold mb-3">Components</h2>
+                    <p class="mb-3">Drop in buttons, alerts, cards, modals, accordions, navbars, and dozens of other patterns.</p>
+                    <ul class="list-unstyled small mb-0 text-muted">
+                        <li class="mb-2">Utility classes stack with component classes</li>
+                        <li class="mb-2">Customizable via SCSS variables or CSS overrides</li>
+                        <li>Accessible by default with ARIA attributes baked in</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card h-100 bg-white border-0 shadow-sm rounded-4 p-4">
+                    <h2 class="h4 fw-semibold mb-3">Getting Started</h2>
+                    <ol class="small text-muted ps-3">
+                        <li>Add the CDN CSS inside <code>&lt;head&gt;</code></li>
+                        <li>Compose UI with Bootstrap classes</li>
+                        <li>Optionally include the bundle JS for interactivity</li>
+                        <li>Test at <code>sm</code>, <code>md</code>, <code>lg</code> viewports</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="row gy-4 align-items-stretch">
+            <div class="col-lg-6">
+                <div class="card border-0 rounded-4 shadow-sm h-100">
+                    <div class="card-body p-4 p-lg-5">
+                        <div class="d-flex align-items-center gap-3 mb-4">
+                            <span class="badge text-bg-success text-uppercase">Demo</span>
+                            <h2 class="h4 mb-0">Sign in with Bootstrap</h2>
+                        </div>
+                        <form class="needs-validation" novalidate>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                                <label for="email">Email address</label>
+                                <div class="invalid-feedback">Provide a valid email to continue.</div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="password" placeholder="Password" minlength="6" required>
+                                <label for="password">Password</label>
+                                <div class="invalid-feedback">Password must be at least 6 characters.</div>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me next time</label>
+                            </div>
+                            <div class="d-grid">
+                                <button class="btn btn-primary btn-lg" type="submit">Login</button>
+                            </div>
+                        </form>
+                        <p class="small text-muted mt-3 mb-0">Tip: add <code>.was-validated</code> after submit to show validation states like this example.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card border-0 rounded-4 shadow-sm h-100">
+                    <div class="card-body p-4 p-lg-5">
+                        <h2 class="h4 mb-3">Handy Resources</h2>
+                        <ul class="list-group list-group-numbered list-group-flush">
+                            <li class="list-group-item ps-0">Bootstrap docs: <a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" class="link-primary" target="_blank" rel="noopener">Introduction</a></li>
+                            <li class="list-group-item ps-0">Components gallery: <a href="https://getbootstrap.com/docs/5.3/components/buttons/" class="link-primary" target="_blank" rel="noopener">Buttons</a>, <a href="https://getbootstrap.com/docs/5.3/components/cards/" class="link-primary" target="_blank" rel="noopener">Cards</a>, <a href="https://getbootstrap.com/docs/5.3/components/navbar/" class="link-primary" target="_blank" rel="noopener">Navbar</a></li>
+                            <li class="list-group-item ps-0">Utility API cheat sheet: <a href="https://getbootstrap.com/docs/5.3/utilities/api/" class="link-primary" target="_blank" rel="noopener">Utility classes</a></li>
+                            <li class="list-group-item ps-0">Extend with your custom styles using <code>:root</code> CSS variables</li>
+                        </ul>
+                        <p class="small text-muted mt-4 mb-0">Bootstrap works great alongside React, Angular, Vue, or just plain HTML whenever you want polished UI fast.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-4 text-center text-muted small">
+        © 2025 Bootstrap Quickstart Demo · Built with Bootstrap 5
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Enable client-side validation styles from Bootstrap docs example
+        (() => {
+            const forms = document.querySelectorAll('.needs-validation');
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+</body>
+</html>

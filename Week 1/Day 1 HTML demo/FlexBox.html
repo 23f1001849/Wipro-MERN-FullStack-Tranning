@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Flexbox Playground</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: #f1f5f9;
+            color: #1f2933;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 48px 20px 72px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+
+        header {
+            text-align: center;
+            max-width: 780px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            letter-spacing: 0.02em;
+            color: #0b4f9b;
+        }
+
+        p.lead {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        main {
+            width: min(960px, 100%);
+            display: grid;
+            gap: 28px;
+        }
+
+        section {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 28px 24px 32px;
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        section header {
+            text-align: left;
+        }
+
+        section h2 {
+            margin: 0 0 6px;
+            font-size: 1.5rem;
+        }
+
+        section p {
+            margin: 0;
+            line-height: 1.5;
+            color: #475569;
+        }
+
+        .flex-demo {
+            border-radius: 14px;
+            border: 1px solid #cbd5f0;
+            background: #f8fafc;
+            padding: 18px;
+            min-height: 150px;
+            display: flex;
+            gap: 12px;
+            position: relative;
+        }
+
+        .flex-demo::after {
+            content: attr(data-config);
+            position: absolute;
+            top: 14px;
+            right: 18px;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #64748b;
+        }
+
+        .flex-item {
+            flex: 1 1 90px;
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            color: #ffffff;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 20px 12px;
+            box-shadow: 0 10px 18px rgba(99, 102, 241, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .flex-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 22px rgba(99, 102, 241, 0.26);
+        }
+
+        .column { flex-direction: column; }
+        .space-between { justify-content: space-between; }
+        .centered { justify-content: center; align-items: center; }
+        .wrap { flex-wrap: wrap; justify-content: center; }
+
+        .wrap .flex-item {
+            flex: 0 1 130px;
+        }
+
+        code {
+            background: rgba(15, 23, 42, 0.08);
+            padding: 4px 7px;
+            border-radius: 8px;
+            font-family: "Cascadia Code", "Fira Code", Consolas, monospace;
+        }
+
+        footer {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding-top: 32px;
+                gap: 24px;
+            }
+
+            section {
+                padding: 22px 18px 26px;
+            }
+
+            .flex-demo {
+                min-height: 120px;
+                gap: 10px;
+            }
+
+            .flex-item {
+                padding: 16px 10px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Flexbox Playground</h1>
+        <p class="lead">Quickly preview how different flex properties reshape a layout. Adjust the examples, copy the highlighted settings, and experiment in your own projects.</p>
+    </header>
+
+    <main>
+        <section>
+            <header>
+                <h2>Horizontal Row</h2>
+                <p>By default flex items flow left-to-right. Use <code>justify-content</code> to define spacing along the row.</p>
+            </header>
+            <div class="flex-demo space-between" data-config="display: flex · direction: row · space-between">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+        </section>
+
+        <section>
+            <header>
+                <h2>Column Alignment</h2>
+                <p>Switch <code>flex-direction: column;</code> to stack content vertically and align center on both axes.</p>
+            </header>
+            <div class="flex-demo column centered" data-config="direction: column · align & justify: center">
+                <div class="flex-item">Header</div>
+                <div class="flex-item">Content</div>
+                <div class="flex-item">Footer</div>
+            </div>
+        </section>
+
+        <section>
+            <header>
+                <h2>Wrapping Grid</h2>
+                <p>Enable <code>flex-wrap: wrap;</code> to let boxes move to the next line when there is not enough space.</p>
+            </header>
+            <div class="flex-demo wrap" data-config="wrap: wrap · justify: center">
+                <div class="flex-item">One</div>
+                <div class="flex-item">Two</div>
+                <div class="flex-item">Three</div>
+                <div class="flex-item">Four</div>
+                <div class="flex-item">Five</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2025 Flexbox Playground
+    </footer>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation Demo · Delhi, India</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            --bg-gradient: linear-gradient(135deg, #0f172a, #1d4ed8 45%, #f97316);
+            --card-bg: rgba(255, 255, 255, 0.92);
+            --accent: #1d4ed8;
+            --accent-soft: rgba(29, 78, 216, 0.12);
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --border-soft: rgba(15, 23, 42, 0.08);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg-gradient);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 32px 18px 64px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: min(1160px, 100%);
+            display: grid;
+            gap: 28px;
+        }
+
+        header {
+            text-align: center;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 42px 32px;
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.2), transparent 55%);
+            pointer-events: none;
+        }
+
+        header h1 {
+            margin: 0 0 16px;
+            font-size: clamp(2.4rem, 5vw, 3rem);
+            letter-spacing: 0.04em;
+            color: var(--accent);
+        }
+
+        header p {
+            margin: 0 auto;
+            max-width: 720px;
+            color: var(--text-muted);
+        }
+
+        .grid {
+            display: grid;
+            gap: 28px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 22px;
+            padding: 28px 30px;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+            display: grid;
+            gap: 18px;
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 1.65rem;
+            color: var(--accent);
+            border-bottom: 3px solid var(--accent-soft);
+            padding-bottom: 12px;
+        }
+
+        .info-stack {
+            display: grid;
+            gap: 10px;
+            background: rgba(226, 232, 240, 0.55);
+            border-radius: 16px;
+            padding: 18px;
+        }
+
+        .info-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 0.98rem;
+        }
+
+        .info-line span:first-child {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .coordinate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .coordinate {
+            background: var(--accent);
+            color: #fff;
+            border-radius: 16px;
+            padding: 16px 18px;
+            text-align: center;
+        }
+
+        .coordinate span {
+            display: block;
+        }
+
+        .coordinate .value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+
+        .map-container {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: inset 0 0 0 1px var(--border-soft);
+            min-height: 320px;
+            display: grid;
+            place-items: center;
+            background: rgba(15, 23, 42, 0.05);
+        }
+
+        .map-container iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 24px;
+        }
+
+        .map-placeholder i {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        address {
+            background: rgba(226, 232, 240, 0.55);
+            padding: 18px;
+            border-radius: 16px;
+            font-style: normal;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: rgba(248, 250, 255, 0.85);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        th {
+            background: var(--accent);
+            color: #fff;
+            text-align: left;
+        }
+
+        .demo-note {
+            background: var(--card-bg);
+            border-radius: 22px;
+            padding: 32px;
+            box-shadow: 0 18px 36px rgba(15, 23, 42, 0.2);
+            text-align: center;
+            display: grid;
+            gap: 12px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        button {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 12px 24px rgba(29, 78, 216, 0.32);
+            transition: transform 150ms ease, box-shadow 150ms ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 18px 28px rgba(29, 78, 216, 0.38);
+        }
+
+        .status {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        footer {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.9rem;
+            padding-top: 12px;
+        }
+
+        a {
+            color: var(--accent);
+        }
+
+        @media (max-width: 720px) {
+            body {
+                padding: 24px 14px 48px;
+            }
+
+            header, .card, .demo-note {
+                padding: 24px 20px;
+            }
+
+            .actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span class="badge">HTML5 GEO · SEMANTIC · ACCESSIBLE</span>
+            <h1>Geolocation HTML Demo</h1>
+            <p>Discover how semantic HTML teams up with modern JavaScript to describe and explore a place—starting with Delhi, India, and optionally extending to your exact spot.</p>
+        </header>
+
+        <section class="grid" aria-label="Delhi overview">
+            <article class="card">
+                <h2>Delhi Location Snapshot</h2>
+                <p>Core facts about the capital city, prefilled using semantic tags ready for reuse in maps or ARIA descriptions.</p>
+                <div class="info-stack">
+                    <div class="info-line"><span>Country</span><span>India</span></div>
+                    <div class="info-line"><span>City</span><span>Delhi (National Capital Territory)</span></div>
+                    <div class="info-line"><span>Primary Languages</span><span>Hindi, English</span></div>
+                    <div class="info-line"><span>Timezone</span><span>IST · UTC +05:30</span></div>
+                    <div class="info-line"><span>Local Time</span><time id="delhi-time" datetime="2025-11-02T00:00:00+05:30">Loading…</time></div>
+                </div>
+                <div class="coordinate-grid">
+                    <div class="coordinate">
+                        <span>Latitude</span>
+                        <span class="value" id="delhi-lat">28.6261° N</span>
+                    </div>
+                    <div class="coordinate">
+                        <span>Longitude</span>
+                        <span class="value" id="delhi-lon">77.2243° E</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card">
+                <h2>Live Map &amp; Geolocation</h2>
+                <p>Use the geolocation API to compare your current position with Delhi. Your location never leaves the browser.</p>
+                <div class="actions">
+                    <button type="button" id="locate-btn">Use My Location</button>
+                    <div class="status" id="status">Awaiting permission…</div>
+                </div>
+
+                <div class="map-container" id="map-container" role="img" aria-label="Map centered on Delhi, India">
+                    <iframe id="map-frame" title="Delhi map" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=77.10%2C28.58%2C77.32%2C28.68&amp;layer=mapnik&amp;marker=28.6261%2C77.2243"></iframe>
+                </div>
+                <p class="status" id="distance-info">Distance from your device: —</p>
+                <p class="status" id="user-coordinates">Your coordinates will appear here once shared.</p>
+            </article>
+
+            <article class="card">
+                <h2>Semantic Geography Elements</h2>
+                <p>HTML5 provides dedicated tags to mark up addresses, dates, and tabular data accurately.</p>
+                <h3>Address Landmark</h3>
+                <address>
+                    Connaught Place<br>
+                    New Delhi, Delhi 110001<br>
+                    India
+                </address>
+                <h3>Landmark Coordinates</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Location</th>
+                            <th scope="col">Coordinates</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>India Gate</td>
+                            <td>28.6129° N, 77.2295° E</td>
+                        </tr>
+                        <tr>
+                            <td>Red Fort</td>
+                            <td>28.6562° N, 77.2410° E</td>
+                        </tr>
+                        <tr>
+                            <td>Qutub Minar</td>
+                            <td>28.5245° N, 77.1855° E</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+
+        <div class="demo-note" aria-live="polite">
+            <h2>About This Demo</h2>
+            <p>Semantic HTML works hand-in-hand with the Geolocation API. When you click “Use My Location” we request coordinates, calculate the straight-line distance to Delhi, and update the map marker.</p>
+            <p>All time data is generated on the fly using <code>Intl.DateTimeFormat</code> with the <code>Asia/Kolkata</code> timezone. The map uses an embedded OpenStreetMap frame. Nothing is stored or transmitted.</p>
+            <p><strong>Delhi reference point:</strong> Latitude 28.6261248 · Longitude 77.2243456</p>
+        </div>
+
+        <footer>
+            Geolocation HTML Demo · Built with HTML5, CSS3, and the Geolocation API
+        </footer>
+    </div>
+
+    <script>
+        const DELHI_COORDS = { lat: 28.6261248, lon: 77.2243456 };
+        const locateBtn = document.getElementById('locate-btn');
+        const statusEl = document.getElementById('status');
+        const distanceInfo = document.getElementById('distance-info');
+        const userCoordsEl = document.getElementById('user-coordinates');
+        const mapFrame = document.getElementById('map-frame');
+        const mapContainer = document.getElementById('map-container');
+        const delhiTimeEl = document.getElementById('delhi-time');
+
+        const formatCoordinate = (value, axis) => {
+            const abs = Math.abs(value).toFixed(4);
+            const positiveLabel = axis === 'lat' ? 'N' : 'E';
+            const negativeLabel = axis === 'lat' ? 'S' : 'W';
+            return `${abs}° ${value >= 0 ? positiveLabel : negativeLabel}`;
+        };
+
+        const toRadians = (deg) => deg * (Math.PI / 180);
+
+        const haversineDistance = (lat1, lon1, lat2, lon2) => {
+            const R = 6371;
+            const dLat = toRadians(lat2 - lat1);
+            const dLon = toRadians(lon2 - lon1);
+            const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) * Math.sin(dLon / 2) ** 2;
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        };
+
+        const updateDelhiTime = () => {
+            const now = new Intl.DateTimeFormat('en-IN', {
+                timeZone: 'Asia/Kolkata',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true
+            }).format(new Date());
+            delhiTimeEl.textContent = `${now} IST`;
+        };
+
+        updateDelhiTime();
+        setInterval(updateDelhiTime, 1000);
+
+        const applyLocation = (latitude, longitude, accuracy, sourceLabel) => {
+            const formattedLat = formatCoordinate(latitude, 'lat');
+            const formattedLon = formatCoordinate(longitude, 'lon');
+            userCoordsEl.textContent = `Your location (${sourceLabel}): ${formattedLat} · ${formattedLon}${accuracy ? ` (±${Math.round(accuracy)} m)` : ''}`;
+
+            const distance = haversineDistance(latitude, longitude, DELHI_COORDS.lat, DELHI_COORDS.lon);
+            distanceInfo.textContent = `Distance from Delhi: ${distance.toFixed(1)} km (great-circle approximation)`;
+            statusEl.textContent = 'Location loaded. Map updated.';
+
+            updateMap(latitude, longitude);
+        };
+
+        const updateMap = (lat, lon) => {
+            const bboxDelta = 0.12;
+            const bbox = `${(lon - bboxDelta).toFixed(3)}%2C${(lat - bboxDelta).toFixed(3)}%2C${(lon + bboxDelta).toFixed(3)}%2C${(lat + bboxDelta).toFixed(3)}`;
+            const src = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat}%2C${lon}`;
+            mapFrame.setAttribute('src', src);
+            mapContainer.setAttribute('aria-label', `Map centered on latitude ${lat.toFixed(4)}, longitude ${lon.toFixed(4)}`);
+        };
+
+        const handleSuccess = (position) => {
+            const { latitude, longitude, accuracy } = position.coords;
+            applyLocation(latitude, longitude, accuracy, 'precise');
+        };
+
+        const ipProviders = [
+            {
+                name: 'geojs',
+                url: 'https://get.geojs.io/v1/ip/geo.json',
+                parse: (data) => ({ latitude: Number(data.latitude), longitude: Number(data.longitude), city: data.city })
+            },
+            {
+                name: 'ipapi',
+                url: 'https://ipapi.co/json/',
+                parse: (data) => ({ latitude: data.latitude, longitude: data.longitude, city: data.city })
+            },
+            {
+                name: 'ipwho',
+                url: 'https://ipwho.is/',
+                parse: (data) => data.success ? { latitude: data.latitude, longitude: data.longitude, city: data.city } : null
+            },
+            {
+                name: 'db-ip',
+                url: 'https://api.db-ip.com/v2/free/self',
+                parse: (data) => ({ latitude: Number(data.latitude), longitude: Number(data.longitude), city: data.city })
+            }
+        ];
+
+        const fallbackToIP = async () => {
+            statusEl.textContent = 'Trying IP-based location…';
+            for (const provider of ipProviders) {
+                try {
+                    const response = await fetch(provider.url, { mode: 'cors' });
+                    if (!response.ok) {
+                        continue;
+                    }
+                    const data = await response.json();
+                    const coords = provider.parse(data);
+                    if (coords && typeof coords.latitude === 'number' && typeof coords.longitude === 'number') {
+                        applyLocation(coords.latitude, coords.longitude, 0, `approx. via ${provider.name}`);
+                        if (coords.city) {
+                            userCoordsEl.textContent += ` · Estimated city: ${coords.city}`;
+                        }
+                        return;
+                    }
+                } catch (err) {
+                    // try next provider
+                }
+            }
+            statusEl.textContent = 'Unable to detect location automatically. Please enable location services or try again later.';
+        };
+
+        const onGeoError = (error) => {
+            const messages = {
+                1: 'Permission denied. Falling back to approximate IP location…',
+                2: 'Position unavailable. Falling back to approximate IP location…',
+                3: 'Request timed out. Trying approximate IP location…'
+            };
+            statusEl.textContent = messages[error.code] || 'Unable to retrieve precise location. Trying approximate IP location…';
+            fallbackToIP();
+        };
+
+        locateBtn.addEventListener('click', () => {
+            if (!navigator.geolocation) {
+                statusEl.textContent = 'Geolocation unsupported. Using approximate IP location…';
+                fallbackToIP();
+                return;
+            }
+            if (!window.isSecureContext) {
+                statusEl.textContent = 'Tip: Precise geolocation needs HTTPS/localhost. Falling back to approximate IP location…';
+                fallbackToIP();
+                return;
+            }
+            statusEl.textContent = 'Requesting position…';
+            navigator.geolocation.getCurrentPosition(handleSuccess, onGeoError, {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 0
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Types Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(125deg, #f8fafc 0%, #e0f2fe 55%, #f8fafc 100%);
+            color: #1f2937;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 48px 18px 72px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+        }
+
+        header {
+            text-align: center;
+            max-width: 760px;
+            background: #ffffff;
+            padding: 32px 28px;
+            border-radius: 22px;
+            box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+        }
+
+        header h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: #1d4ed8;
+        }
+
+        header p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        main {
+            width: min(960px, 100%);
+            display: grid;
+            gap: 24px;
+        }
+
+        .panel {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 28px 30px;
+            box-shadow: 0 16px 36px rgba(15, 23, 42, 0.1);
+            display: grid;
+            gap: 18px;
+        }
+
+        .panel h2 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: #0f172a;
+        }
+
+        .example-card {
+            border-radius: 16px;
+            border: 1px dashed #cbd5f5;
+            background: #f1f5f9;
+            padding: 20px 22px;
+            display: grid;
+            gap: 12px;
+        }
+
+        .note {
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        .inline-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            background: #0f766e;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding-top: 32px;
+            }
+
+            header, .panel {
+                padding: 24px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CSS Styling Approaches</h1>
+        <p>Inline, internal, and external CSS each solve different problems. This page renders all three so you can spot when each technique shines.</p>
+    </header>
+
+    <main>
+        <section class="panel" aria-labelledby="inline-css">
+            <h2 id="inline-css">Inline CSS</h2>
+            <p class="note">Inline styles live inside the HTML tag via the <code>style</code> attribute. They override other declarations on the same element.</p>
+            <div class="example-card">
+                <p>The following pill uses inline CSS to control its colors and spacing:</p>
+                <span class="inline-pill" style="background:#f97316; border:2px solid #ea580c;">Inline style applied!</span>
+                <pre><code>&lt;span style="background:#f97316; border:2px solid #ea580c;"&gt;...&lt;/span&gt;</code></pre>
+                <p class="note">Great for quick demos or generated markup, but avoid for large projects to keep presentation separate from content.</p>
+            </div>
+        </section>
+
+        <section class="panel" aria-labelledby="internal-css">
+            <h2 id="internal-css">Internal (Embedded) CSS</h2>
+            <p class="note">Embedded styles appear inside a <code>&lt;style&gt;</code> block within the document&rsquo;s <code>&lt;head&gt;</code>. Everything you are reading now uses internal CSS for layout, spacing, and colors.</p>
+            <div class="example-card">
+                <p>Inspect this page to see selectors such as <code>body</code>, <code>header</code>, and <code>.panel</code> defined directly in the head.</p>
+                <p class="note">Internal CSS keeps the styles alongside the markup, useful for component prototypes or single-file demos.</p>
+            </div>
+        </section>
+
+        <section class="panel" aria-labelledby="external-css">
+            <h2 id="external-css">External CSS</h2>
+            <p class="note">External stylesheets live in their own files and apply everywhere they are linked. That keeps design consistent across multiple pages.</p>
+            <div class="example-card">
+                <p class="external-style">This paragraph picks up its design from <code>styles.css</code>, proving the link tag at the top is working.</p>
+                <pre><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+                <p class="note">External CSS is the go-to choice for production websites so you can cache, version, and reuse styling rules.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 CSS Types Demo
+    </footer>
+</body>
+</html>

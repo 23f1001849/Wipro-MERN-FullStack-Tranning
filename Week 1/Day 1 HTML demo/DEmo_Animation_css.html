@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic CSS Animations</title>
+    <style>
+        :root {
+            color-scheme: light;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top, #f7f9fc 0%, #dde7ff 60%, #cfd9f7 100%);
+            color: #1f2937;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 16px 64px;
+            gap: 32px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.4rem;
+            letter-spacing: 0.02em;
+        }
+
+        p.description {
+            margin: 0;
+            max-width: 720px;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        section {
+            width: min(880px, 100%);
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 18px;
+            box-shadow: 0 18px 40px rgba(31, 41, 55, 0.12);
+            padding: 32px 28px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        section h2 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: #0f172a;
+        }
+
+        section p {
+            margin: 0;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        .stage {
+            width: min(600px, 100%);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            justify-items: center;
+        }
+
+        .stage > div {
+            width: 220px;
+            min-height: 240px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #f7fbff, #e4e9ff);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            padding: 18px 16px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stage h3 {
+            margin: 0;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: #475569;
+            margin-top: auto;
+        }
+
+        .clock {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 8px solid #232e52;
+            background: radial-gradient(circle, #fff 65%, #f1f5f9 100%);
+        }
+
+        .clock::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #232e52;
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            transform: translateX(-50%) rotate(0deg);
+            background: #1e293b;
+            border-radius: 999px;
+        }
+
+        .hand.hour {
+            width: 7px;
+            height: 52px;
+        }
+
+        .hand.minute {
+            width: 5px;
+            height: 74px;
+        }
+
+        .hand.second {
+            width: 3px;
+            height: 88px;
+            background: #ef4444;
+        }
+
+        .ball-stage {
+            background: linear-gradient(180deg, #fde68a 0%, #f97316 110%);
+        }
+
+        .bounce-ball {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff 0%, #fb923c 35%, #f97316 100%);
+            box-shadow: 0 16px 30px rgba(249, 115, 22, 0.55);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .bounce-shadow {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90px;
+            height: 12px;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 70%);
+            animation: shadow 2s ease-in-out infinite;
+        }
+
+        .color-box {
+            width: 110px;
+            height: 110px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            animation: colorShift 4s ease-in-out infinite;
+        }
+
+        .heart {
+            position: relative;
+            width: 110px;
+            height: 100px;
+            transform: translateY(-12px);
+            animation: heartbeat 1.4s ease-in-out infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 60px;
+            height: 90px;
+            background: #f87171;
+            border-radius: 60px 60px 0 0;
+        }
+
+        .heart::before {
+            left: 50px;
+            transform: rotate(-45deg);
+            transform-origin: 0% 100%;
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .orbit {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(148, 163, 184, 0.18) 35%, rgba(148, 163, 184, 0.05) 80%);
+            position: relative;
+        }
+
+        .orbit::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.65);
+        }
+
+        .satellite {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #a855f7;
+            box-shadow: 0 0 16px rgba(168, 85, 247, 0.6);
+            transform: translate(-50%, -50%) rotate(0deg) translateX(68px);
+            animation: orbit 6s linear infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, -120px); }
+        }
+
+        @keyframes shadow {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.4; }
+            50% { transform: translateX(-50%) scale(0.7); opacity: 0.25; }
+        }
+
+        @keyframes colorShift {
+            0% {
+                transform: rotate(0deg) translateX(-8px);
+                background: linear-gradient(135deg, #38bdf8, #6366f1);
+            }
+            50% {
+                transform: rotate(180deg) translateX(8px);
+                background: linear-gradient(135deg, #f472b6, #f97316);
+            }
+            100% {
+                transform: rotate(360deg) translateX(-8px);
+                background: linear-gradient(135deg, #22d3ee, #4ade80);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: translateY(-12px) scale(1); }
+            30% { transform: translateY(-12px) scale(1.18); }
+            55% { transform: translateY(-12px) scale(0.98); }
+            80% { transform: translateY(-12px) scale(1.08); }
+        }
+
+        @keyframes orbit {
+            from { transform: translate(-50%, -50%) rotate(0deg) translateX(68px); }
+            to { transform: translate(-50%, -50%) rotate(360deg) translateX(68px); }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 32px 12px 48px;
+                gap: 24px;
+            }
+
+            section {
+                padding: 24px 18px 32px;
+            }
+
+            .stage > div {
+                width: 100%;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic CSS Animations</h1>
+    <p class="description">Each panel showcases a classic animation pattern powered entirely by CSS keyframes and transforms.</p>
+
+    <section>
+        <h2>Analog Clock</h2>
+        <p>The three independent hands rotate at realistic speeds for hours, minutes, and seconds.</p>
+        <div class="stage">
+            <div>
+                <div class="clock">
+                    <div class="hand hour"></div>
+                    <div class="hand minute"></div>
+                    <div class="hand second"></div>
+                </div>
+                <h3>Clock Rotation</h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Motion and Transformation</h2>
+        <p>Bouncing, orbiting, and color morphing illustrate how transforms bring interfaces to life.</p>
+        <div class="stage">
+            <div class="ball-stage">
+                <div class="bounce-ball"></div>
+                <div class="bounce-shadow"></div>
+                <h3>Bouncing Ball</h3>
+            </div>
+            <div>
+                <div class="orbit">
+                    <div class="satellite"></div>
+                </div>
+                <h3>Orbital Path</h3>
+            </div>
+            <div>
+                <div class="color-box"></div>
+                <h3>Color Shift</h3>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Shape Animation</h2>
+        <p>Pseudo-elements combine into a heart that pulses to emphasize keyframe timing control.</p>
+        <div class="stage">
+            <div>
+                <div class="heart"></div>
+                <h3>Heartbeat</h3>
+            </div>
+        </div>
+    </section>
+    <script>
+        const hourHand = document.querySelector('.hand.hour');
+        const minuteHand = document.querySelector('.hand.minute');
+        const secondHand = document.querySelector('.hand.second');
+
+        if (hourHand && minuteHand && secondHand) {
+            const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000;
+
+            const updateClock = () => {
+                const now = new Date();
+                const utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
+                const ist = new Date(utcMs + IST_OFFSET_MS);
+
+                const seconds = ist.getSeconds();
+                const minutes = ist.getMinutes();
+                const hours = ist.getHours();
+
+                const secondDeg = seconds * 6;
+                const minuteDeg = minutes * 6 + seconds * 0.1;
+                const hourDeg = (hours % 12) * 30 + minutes * 0.5 + seconds * (0.5 / 60);
+
+                hourHand.style.transform = `translateX(-50%) rotate(${hourDeg}deg)`;
+                minuteHand.style.transform = `translateX(-50%) rotate(${minuteDeg}deg)`;
+                secondHand.style.transform = `translateX(-50%) rotate(${secondDeg}deg)`;
+            };
+
+            updateClock();
+            setInterval(updateClock, 1000);
+        }
+    </script>
+</body>
+</html>

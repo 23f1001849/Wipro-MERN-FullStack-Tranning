@@ -1,0 +1,11 @@
+/* External stylesheet that powers the CSS Types demo */
+.external-style {
+    background: linear-gradient(135deg, #38bdf8, #6366f1);
+    color: #ffffff;
+    padding: 18px 22px;
+    border-radius: 16px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    box-shadow: 0 14px 28px rgba(99, 102, 241, 0.28);
+    border: 2px solid rgba(255, 255, 255, 0.65);
+}

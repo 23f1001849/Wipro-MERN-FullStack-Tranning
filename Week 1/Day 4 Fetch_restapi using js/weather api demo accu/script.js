@@ -1,4 +1,4 @@
-const API_KEY = "zpka_1e173db8ed9a4aed9150a44b5c833bc6_60c613de"; // Replace with your AccuWeather API key
+const API_KEY = "zpka_1e173db8ed9a4aed9150a44b5c833bc6_60c613de";
 const LOCATION_SEARCH_URL = "https://dataservice.accuweather.com/locations/v1/cities/search";
 const CURRENT_CONDITIONS_URL = (locationKey) => `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}`;
 const DAILY_FORECAST_URL = (locationKey) => `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}`;
@@ -300,7 +300,6 @@ function assertApiKey() {
 	}
 }
 
-// Only attempt the demo search if an API key is present.
 loadWeather("London").catch(() => {
-	// Silent fallback; the error is already surfaced via status messaging.
+	
 });
