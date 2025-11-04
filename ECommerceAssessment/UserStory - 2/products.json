@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "title": "NoiseBlock Wireless Headphones",
+        "category": "Audio",
+        "price": 129.99,
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FI%2F71VEeIkehCL._AC_SX522_.jpg&f=1&nofb=1&ipt=db83d7903efcb56c84537dd248007343cfb8b9b2706bb0f2bd8c7c7dfe8ca415",
+        "description": "Focus-ready active noise cancelling with 30 hours of play time."
+    },
+    {
+        "id": 2,
+        "title": "EchoSphere Mini Speaker",
+        "category": "Smart Home",
+        "price": 69.00,
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.mos.cms.futurecdn.net%2FFwNsyUCUrxMu5DBHgANW5a-970-80.jpg&f=1&nofb=1&ipt=7262268f7308495f9891705b6020d0dfe6ad6bd790ef65127d588f80c469a63d",
+        "description": "Pocket sized assistant with ambient light ring and big sound."
+    },
+    {
+        "id": 3,
+        "title": "Skyline Mechanical Keyboard",
+        "category": "Accessories",
+        "price": 159.00,
+        "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffiles.pccasegear.com%2FUserFiles%2FDKON1808-ftr1b.jpg&f=1&nofb=1&ipt=7f3fb9844d93cb0381819413750cf124e3293aa76b3f35b45d5863bdd5d9ff90",
+        "description": "Aluminum frame, hot-swappable switches, per-key RGB lighting."
+    },
+    {
+        "id": 4,
+        "title": "StudioEdge 4K Monitor",
+        "category": "Displays",
+        "price": 549.99,
+        "image": "https://m.media-amazon.com/images/I/71hQ8cV-gkL._AC_UF1000,1000_QL80_.jpg",
+        "description": "Ultra-thin bezel, HDR 400 support, perfect for creative pros."
+    },
+    {
+        "id": 5,
+        "title": "SwiftLite Travel Laptop",
+        "category": "Computers",
+        "price": 899.99,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcJx3y2CCIDEtb0uNEAvJpRYtj0OKbZ_18ftFKIcJDjDVshZeOSAQ4GeofB4S2rFsZdp0&usqp=CAU",
+        "description": "13-inch ultraportable with 16GB RAM and all-day battery."
+    },
+    {
+        "id": 6,
+        "title": "ActiveFit Sport Watch",
+        "category": "Wearables",
+        "price": 119.50,
+        "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80",
+        "description": "Waterproof fitness tracking with GPS and heart-rate monitoring."
+    }
+]

@@ -1,0 +1,107 @@
+[
+  {
+    "meterId": "MTR001",
+    "location": "Delhi-Office",
+    "timestamp": { "$date": "2025-10-29T10:00:00Z" },
+    "energy_kWh": 3.5,
+    "temperature_C": 27.0
+  },
+  {
+    "meterId": "MTR001",
+    "location": "Delhi-Office",
+    "timestamp": { "$date": "2025-10-29T10:15:00Z" },
+    "energy_kWh": 3.8,
+    "temperature_C": 28.5
+  },
+  {
+    "meterId": "MTR001",
+    "location": "Delhi-Office",
+    "timestamp": { "$date": "2025-10-29T10:30:00Z" },
+    "energy_kWh": 3.7,
+    "temperature_C": 28.2
+  },
+  {
+    "meterId": "MTR001",
+    "location": "Delhi-Office",
+    "timestamp": { "$date": "2025-10-29T11:00:00Z" },
+    "energy_kWh": 3.9,
+    "temperature_C": 28.8
+  },
+  {
+    "meterId": "MTR001",
+    "location": "Delhi-Office",
+    "timestamp": { "$date": "2025-10-29T12:00:00Z" },
+    "energy_kWh": 4.2,
+    "temperature_C": 30.0
+  },
+  {
+    "meterId": "MTR002",
+    "location": "Mumbai-Plant",
+    "timestamp": { "$date": "2025-10-29T10:00:00Z" },
+    "energy_kWh": 5.5,
+    "temperature_C": 32.0
+  },
+  {
+    "meterId": "MTR002",
+    "location": "Mumbai-Plant",
+    "timestamp": { "$date": "2025-10-29T10:30:00Z" },
+    "energy_kWh": 5.8,
+    "temperature_C": 32.5
+  },
+  {
+    "meterId": "MTR002",
+    "location": "Mumbai-Plant",
+    "timestamp": { "$date": "2025-10-29T11:00:00Z" },
+    "energy_kWh": 6.2,
+    "temperature_C": 33.0
+  },
+  {
+    "meterId": "MTR002",
+    "location": "Mumbai-Plant",
+    "timestamp": { "$date": "2025-10-29T12:00:00Z" },
+    "energy_kWh": 5.9,
+    "temperature_C": 31.0
+  },
+  {
+    "meterId": "MTR003",
+    "location": "Bengaluru-RnD",
+    "timestamp": { "$date": "2025-10-29T10:00:00Z" },
+    "energy_kWh": 4.1,
+    "temperature_C": 26.0
+  },
+  {
+    "meterId": "MTR003",
+    "location": "Bengaluru-RnD",
+    "timestamp": { "$date": "2025-10-29T11:00:00Z" },
+    "energy_kWh": 4.6,
+    "temperature_C": 26.7
+  },
+  {
+    "meterId": "MTR003",
+    "location": "Bengaluru-RnD",
+    "timestamp": { "$date": "2025-10-29T12:00:00Z" },
+    "energy_kWh": 4.3,
+    "temperature_C": 27.1
+  },
+  {
+    "meterId": "MTR004",
+    "location": "Hyderabad-DC",
+    "timestamp": { "$date": "2025-10-29T10:00:00Z" },
+    "energy_kWh": 6.5,
+    "temperature_C": 30.5
+  },
+  {
+    "meterId": "MTR004",
+    "location": "Hyderabad-DC",
+    "timestamp": { "$date": "2025-10-29T11:00:00Z" },
+    "energy_kWh": 6.8,
+    "temperature_C": 31.2
+  },
+  {
+    "meterId": "MTR004",
+    "location": "Hyderabad-DC",
+    "timestamp": { "$date": "2025-10-29T12:00:00Z" },
+    "energy_kWh": 7.3,
+    "temperature_C": 31.5
+  }
+]

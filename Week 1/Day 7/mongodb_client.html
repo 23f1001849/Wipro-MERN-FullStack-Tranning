@@ -162,10 +162,36 @@
             flex: none;
         }
 
-        .grid-layout {
+        .config-preview {
+            border-radius: 10px;
+            border: 1px solid rgba(0, 237, 100, 0.2);
+            background: rgba(12, 17, 24, 0.6);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .config-preview dl {
+            margin: 0;
             display: grid;
-            gap: 1rem;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.35rem;
+        }
+
+        .config-preview dt {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(124, 138, 154, 0.9);
+        }
+
+        .config-preview dd {
+            margin: 0 0 0.5rem;
+            font-weight: 600;
+            word-break: break-all;
+            color: var(--text);
+        }
+
+        .config-preview dd:last-of-type {
+            margin-bottom: 0;
         }
 
         small {
@@ -188,30 +214,20 @@
         <section class="panel primary">
             <h1>MongoDB URI Console</h1>
             <p class="notice">
-                This standalone page uses the MongoDB Atlas Data API so you can explore a cluster directly from the browser.
-                Make sure the Data API is enabled for your project and that this origin is on the allowed list. Never share
-                permanent keys here; create short-lived keys when possible.
+                This console talks to a local Node.js proxy that performs MongoDB driver calls on your behalf. Run the
+                <code>connect.js</code> server first (the proxy handles credentials stored in <code>.env</code>), then connect below to trigger live CRUD helpers.
             </p>
             <form id="connection-form">
-                <label for="api-uri">MongoDB Data API URI</label>
-                <input id="api-uri" name="api-uri" type="url" required placeholder="https://data.mongodb-api.com/app/data-xxxxx/endpoint/data/v1" />
-
-                <label for="api-key">API Key</label>
-                <input id="api-key" name="api-key" type="password" required placeholder="Your Data API key" />
-
-                <div class="grid-layout">
-                    <div>
-                        <label for="data-source">Data Source</label>
-                        <input id="data-source" name="data-source" required placeholder="Cluster0" />
-                    </div>
-                    <div>
-                        <label for="database-name">Database</label>
-                        <input id="database-name" name="database-name" required placeholder="sample_mflix" />
-                    </div>
-                    <div>
-                        <label for="collection-name">Collection</label>
-                        <input id="collection-name" name="collection-name" required placeholder="movies" />
-                    </div>
+                <div class="config-preview" aria-live="polite">
+                    <p class="muted" id="env-status">Contacting local Node server for configuration...</p>
+                    <dl>
+                        <dt>Deployment</dt>
+                        <dd id="env-uri">...</dd>
+                        <dt>Database</dt>
+                        <dd id="env-database">...</dd>
+                        <dt>Collection</dt>
+                        <dd id="env-collection">...</dd>
+                    </dl>
                 </div>
 
                 <div class="inline">
@@ -270,12 +286,10 @@
 
     <script>
         const state = {
-            baseUri: "",
-            apiKey: "",
-            dataSource: "",
             database: "",
             collection: "",
-            isConnected: false
+            isConnected: false,
+            envLoaded: false
         };
 
         const form = document.getElementById("connection-form");
@@ -285,77 +299,78 @@
         const insertResult = document.getElementById("insert-result");
         const updateResult = document.getElementById("update-result");
         const deleteResult = document.getElementById("delete-result");
+        const envStatus = document.getElementById("env-status");
+        const envUri = document.getElementById("env-uri");
+        const envDatabase = document.getElementById("env-database");
+        const envCollection = document.getElementById("env-collection");
 
-        function persistentLoad() {
+        connectBtn.disabled = true;
+
+        async function loadServerConfig() {
             try {
-                const saved = JSON.parse(localStorage.getItem("mongo-data-api-config"));
-                if (!saved) {
-                    return;
+                const response = await fetch("/api/config", { cache: "no-store" });
+                if (!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText}`);
                 }
-                state.baseUri = saved.baseUri || "";
-                state.apiKey = saved.apiKey || "";
-                state.dataSource = saved.dataSource || "";
-                state.database = saved.database || "";
-                state.collection = saved.collection || "";
+                const config = await response.json();
 
-                document.getElementById("api-uri").value = state.baseUri;
-                document.getElementById("api-key").value = state.apiKey;
-                document.getElementById("data-source").value = state.dataSource;
-                document.getElementById("database-name").value = state.database;
-                document.getElementById("collection-name").value = state.collection;
-            } catch (err) {
-                console.warn("Unable to load cached config", err);
+                state.database = (config.database || "").trim();
+                state.collection = (config.collection || "").trim();
+                state.envLoaded = Boolean(state.database && state.collection);
+
+                envUri.textContent = config.deployment || "Managed on server";
+                envDatabase.textContent = state.database || "Not set";
+                envCollection.textContent = state.collection || "Not set";
+
+                if (state.envLoaded) {
+                    envStatus.textContent = "Configuration supplied by server.";
+                    envStatus.className = "muted";
+                    connectBtn.disabled = false;
+                } else {
+                    throw new Error("Missing required values on the server. Ensure database and collection are defined.");
+                }
+            } catch (error) {
+                state.envLoaded = false;
+                envStatus.textContent = `Unable to reach Node server: ${error.message}`;
+                envStatus.className = "status error";
+                envUri.textContent = "Unavailable";
+                envDatabase.textContent = "Unavailable";
+                envCollection.textContent = "Unavailable";
+                connectBtn.disabled = true;
             }
         }
 
-        function persistentSave() {
-            localStorage.setItem("mongo-data-api-config", JSON.stringify({
-                baseUri: state.baseUri,
-                apiKey: state.apiKey,
-                dataSource: state.dataSource,
-                database: state.database,
-                collection: state.collection
-            }));
-        }
-
-        persistentLoad();
+        loadServerConfig();
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
+            if (!state.envLoaded) {
+                envStatus.textContent = "Server configuration not ready. Resolve the issue above and refresh.";
+                envStatus.className = "status error";
+                return;
+            }
             statusEl.textContent = "Connecting...";
             statusEl.className = "status";
             connectBtn.disabled = true;
 
-            state.baseUri = document.getElementById("api-uri").value.trim().replace(/\/?$/, "");
-            state.apiKey = document.getElementById("api-key").value.trim();
-            state.dataSource = document.getElementById("data-source").value.trim();
-            state.database = document.getElementById("database-name").value.trim();
-            state.collection = document.getElementById("collection-name").value.trim();
-
-            persistentSave();
-
-            const canProceed = await pingCluster();
-            connectBtn.disabled = false;
-            if (canProceed) {
+            try {
+                const response = await fetch("/api/ping");
+                if (!response.ok) {
+                    const errorBody = await response.json();
+                    throw new Error(errorBody.error || "Ping failed.");
+                }
                 state.isConnected = true;
                 statusEl.textContent = "Connected. Ready for CRUD operations.";
                 statusEl.className = "status ok";
                 findDocuments();
-            } else {
-                state.isConnected = false;
-            }
-        });
-
-        async function pingCluster() {
-            try {
-                await callDataApi("findOne", { filter: {} });
-                return true;
             } catch (error) {
+                state.isConnected = false;
                 statusEl.textContent = error.message;
                 statusEl.className = "status error";
-                return false;
+            } finally {
+                connectBtn.disabled = false;
             }
-        }
+        });
 
         function parseJson(source, fallback = {}) {
             if (!source.trim()) {
@@ -368,31 +383,17 @@
             }
         }
 
-        async function callDataApi(action, payload) {
-            if (!state.baseUri || !state.apiKey) {
-                throw new Error("Please connect first.");
-            }
-
-            const endpoint = `${state.baseUri}/action/${action}`;
-            const body = {
-                dataSource: state.dataSource,
-                database: state.database,
-                collection: state.collection,
-                ...payload
-            };
-
-            const response = await fetch(endpoint, {
+        async function callBackend(path, payload) {
+            const response = await fetch(path, {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "api-key": state.apiKey
-                },
-                body: JSON.stringify(body)
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
             });
 
             if (!response.ok) {
-                const text = await response.text();
-                throw new Error(`Data API error (${response.status}): ${text}`);
+                const errorBody = await response.json().catch(() => ({}));
+                const message = errorBody.error || `Server error (${response.status})`;
+                throw new Error(message);
             }
 
             return response.json();
@@ -406,7 +407,7 @@
                 const filter = parseJson(filterText, {});
                 const projection = parseJson(projectionText, {});
                 findResult.textContent = "Loading...";
-                const data = await callDataApi("find", { filter, projection, limit: 25 });
+                const data = await callBackend("/api/find", { filter, projection, limit: 25 });
                 findResult.textContent = JSON.stringify(data, null, 2);
             } catch (err) {
                 findResult.textContent = err.message;
@@ -418,7 +419,7 @@
             try {
                 const document = parseJson(source);
                 insertResult.textContent = "Inserting...";
-                const data = await callDataApi("insertOne", { document });
+                const data = await callBackend("/api/insert", { document });
                 insertResult.textContent = JSON.stringify(data, null, 2);
                 await findDocuments();
             } catch (err) {
@@ -433,7 +434,7 @@
                 const filter = parseJson(filterSource);
                 const update = parseJson(updateSource);
                 updateResult.textContent = "Updating...";
-                const data = await callDataApi("updateOne", { filter, update });
+                const data = await callBackend("/api/update", { filter, update });
                 updateResult.textContent = JSON.stringify(data, null, 2);
                 await findDocuments();
             } catch (err) {
@@ -446,7 +447,7 @@
             try {
                 const filter = parseJson(filterSource);
                 deleteResult.textContent = "Deleting...";
-                const data = await callDataApi("deleteOne", { filter });
+                const data = await callBackend("/api/delete", { filter });
                 deleteResult.textContent = JSON.stringify(data, null, 2);
                 await findDocuments();
             } catch (err) {
