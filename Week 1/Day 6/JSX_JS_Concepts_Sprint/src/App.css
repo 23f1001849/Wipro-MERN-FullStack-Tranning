@@ -1,0 +1,110 @@
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 1.75rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+  box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.controls {
+  gap: 1rem;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.button-row button {
+  background-color: #2563eb;
+  border: none;
+  color: #ffffff;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.button-row button:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.content {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 860px) {
+  .content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.number-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+  gap: 0.8rem;
+}
+
+.number-list li {
+  padding: 0.75rem 0.5rem;
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border-radius: 0.6rem;
+  font-weight: 600;
+  text-align: center;
+  color: #1d4ed8;
+}
+
+.hoisting-list {
+  padding-left: 1.2rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hoisting-list strong {
+  color: #0f172a;
+}
+
+.constructor-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+  margin: 0;
+}
+
+.constructor-details dt {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.constructor-details dd {
+  margin: 0;
+  color: #334155;
+}
