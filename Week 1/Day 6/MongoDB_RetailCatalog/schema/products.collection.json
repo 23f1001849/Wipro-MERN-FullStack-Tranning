@@ -1,0 +1,96 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "products collection schema",
+    "required": [
+      "sku",
+      "name",
+      "category",
+      "price",
+      "currency",
+      "stock",
+      "availability",
+      "createdAt",
+      "updatedAt"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "sku": {
+        "bsonType": "string",
+        "description": "Unique SKU per product"
+      },
+      "name": {
+        "bsonType": "string",
+        "description": "Human readable title"
+      },
+      "category": {
+        "bsonType": "string",
+        "description": "Primary category path"
+      },
+      "subCategory": {
+        "bsonType": ["string", "null"],
+        "description": "Optional secondary category"
+      },
+      "price": {
+        "bsonType": "decimal",
+        "description": "Current list price"
+      },
+      "currency": {
+        "bsonType": "string",
+        "description": "ISO 4217 currency code",
+        "maxLength": 3,
+        "minLength": 3
+      },
+      "stock": {
+        "bsonType": "object",
+        "required": ["available", "reserved"],
+        "properties": {
+          "available": {
+            "bsonType": "int",
+            "minimum": 0
+          },
+          "reserved": {
+            "bsonType": "int",
+            "minimum": 0
+          }
+        }
+      },
+      "availability": {
+        "enum": ["in-stock", "backorder", "preorder", "discontinued"]
+      },
+      "attributes": {
+        "bsonType": "object",
+        "additionalProperties": {
+          "bsonType": ["string", "double", "decimal", "bool", "int"]
+        }
+      },
+      "variants": {
+        "bsonType": ["array", "null"],
+        "items": {
+          "bsonType": "object",
+          "required": ["sku", "stock"],
+          "properties": {
+            "sku": { "bsonType": "string" },
+            "price": { "bsonType": ["decimal", "null"] },
+            "stock": {
+              "bsonType": "object",
+              "required": ["available", "reserved"],
+              "properties": {
+                "available": { "bsonType": "int", "minimum": 0 },
+                "reserved": { "bsonType": "int", "minimum": 0 }
+              }
+            }
+          }
+        }
+      },
+      "createdAt": {
+        "bsonType": "date"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      }
+    }
+  }
+}

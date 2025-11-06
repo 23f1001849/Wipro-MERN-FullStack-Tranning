@@ -1,0 +1,35 @@
+[
+  {
+    "_id": { "$oid": "652fac1a4d3e770011223344" },
+    "username": "priya.desai",
+    "email": "priya.desai@example.com",
+    "passwordHash": "$argon2id$v=19$m=4096,t=3,p=1$YTRhZ...",
+    "roles": ["customer"],
+    "status": "active",
+    "lastLogin": { "$date": "2025-03-04T07:19:42Z" },
+    "createdAt": { "$date": "2024-11-10T10:02:18Z" },
+    "updatedAt": { "$date": "2025-01-15T08:54:09Z" }
+  },
+  {
+    "_id": { "$oid": "652fac1a4d3e770011223355" },
+    "username": "ops.manager",
+    "email": "operations@example.com",
+    "passwordHash": "$argon2id$v=19$m=4096,t=3,p=1$ajR2Z...",
+    "roles": ["admin", "inventory"],
+    "status": "active",
+    "lastLogin": { "$date": "2025-03-05T12:40:05Z" },
+    "createdAt": { "$date": "2023-06-01T09:00:00Z" },
+    "updatedAt": { "$date": "2025-02-02T07:21:33Z" }
+  },
+  {
+    "_id": { "$oid": "652fac1a4d3e770011223366" },
+    "username": "demo.locked",
+    "email": "locked.user@example.com",
+    "passwordHash": "$argon2id$v=19$m=4096,t=3,p=1$ZmxXc...",
+    "roles": ["customer"],
+    "status": "locked",
+    "lastLogin": { "$date": "2025-02-21T05:12:03Z" },
+    "createdAt": { "$date": "2024-07-18T13:44:00Z" },
+    "updatedAt": { "$date": "2025-02-28T17:33:20Z" }
+  }
+]

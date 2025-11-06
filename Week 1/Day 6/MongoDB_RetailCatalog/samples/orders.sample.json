@@ -1,0 +1,88 @@
+[
+  {
+    "_id": { "$oid": "6530a0bf3c56ab0011aa2200" },
+    "orderNumber": "ORD-2025-00004512",
+    "userId": { "$oid": "652fac1a4d3e770011223344" },
+    "status": "shipped",
+    "orderDate": { "$date": "2025-03-05T16:22:00Z" },
+    "items": [
+      {
+        "productId": { "$oid": "652f9d8a2f1b4a0011223344" },
+        "sku": "EL-HEAD-0001",
+        "name": "Aurora Wireless Headphones",
+        "unitPrice": { "$numberDecimal": "149.99" },
+        "quantity": 1,
+        "lineTotal": { "$numberDecimal": "149.99" }
+      },
+      {
+        "productId": { "$oid": "652f9d8a2f1b4a0011223355" },
+        "sku": "HM-KET-2100",
+        "name": "BrewMate Electric Kettle",
+        "unitPrice": { "$numberDecimal": "39.50" },
+        "quantity": 2,
+        "lineTotal": { "$numberDecimal": "79.00" }
+      }
+    ],
+    "payment": {
+      "method": "card",
+      "transactionId": "txn_9876543210",
+      "status": "captured"
+    },
+    "shippingAddress": {
+      "name": "Priya Desai",
+      "line1": "221B Baker Street",
+      "city": "London",
+      "postalCode": "NW16XE",
+      "country": "GB"
+    },
+    "totals": {
+      "subtotal": { "$numberDecimal": "228.99" },
+      "tax": { "$numberDecimal": "18.32" },
+      "shipping": { "$numberDecimal": "7.99" },
+      "discount": { "$numberDecimal": "0" },
+      "grandTotal": { "$numberDecimal": "255.30" }
+    },
+    "notes": "Leave at reception",
+    "updatedAt": { "$date": "2025-03-06T08:47:33Z" }
+  },
+  {
+    "_id": { "$oid": "6530a0bf3c56ab0011aa2201" },
+    "orderNumber": "ORD-2025-00005201",
+    "userId": { "$oid": "652fac1a4d3e770011223355" },
+    "status": "pending",
+    "orderDate": { "$date": "2025-03-07T10:05:00Z" },
+    "items": [
+      {
+        "productId": { "$oid": "652f9d8a2f1b4a0011223366" },
+        "sku": "SP-FTN-8800",
+        "name": "StridePlus Trail Running Shoes",
+        "unitPrice": { "$numberDecimal": "89.00" },
+        "quantity": 2,
+        "lineTotal": { "$numberDecimal": "178.00" }
+      }
+    ],
+    "payment": {
+      "method": "cod",
+      "transactionId": null,
+      "status": "pending"
+    },
+    "shippingAddress": {
+      "name": "Operations Manager",
+      "line1": "45 Harbor Way",
+      "line2": "Suite 500",
+      "city": "San Francisco",
+      "state": "CA",
+      "postalCode": "94105",
+      "country": "US"
+    },
+    "totals": {
+      "subtotal": { "$numberDecimal": "178.00" },
+      "tax": { "$numberDecimal": "15.13" },
+      "shipping": { "$numberDecimal": "0" },
+      "discount": { "$numberDecimal": "10.00" },
+      "grandTotal": { "$numberDecimal": "183.13" }
+    },
+    "notes": null,
+    "updatedAt": { "$date": "2025-03-07T10:05:00Z" }
+  }
+]

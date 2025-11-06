@@ -1,0 +1,72 @@
+[
+  {
+    "_id": { "$oid": "652f9d8a2f1b4a0011223344" },
+    "sku": "EL-HEAD-0001",
+    "name": "Aurora Wireless Headphones",
+    "category": "Electronics > Audio",
+    "subCategory": "Headphones",
+    "price": { "$numberDecimal": "149.99" },
+    "currency": "USD",
+    "stock": { "available": 120, "reserved": 8 },
+    "availability": "in-stock",
+    "attributes": {
+      "brand": "Aurora",
+      "color": "Black",
+      "connectivity": "Bluetooth 5.3",
+      "noiseCancellation": true
+    },
+    "variants": [
+      {
+        "sku": "EL-HEAD-0001-GRY",
+        "price": { "$numberDecimal": "159.99" },
+        "stock": { "available": 45, "reserved": 2 }
+      }
+    ],
+    "createdAt": { "$date": "2025-01-14T09:24:00Z" },
+    "updatedAt": { "$date": "2025-03-01T11:12:45Z" }
+  },
+  {
+    "_id": { "$oid": "652f9d8a2f1b4a0011223355" },
+    "sku": "HM-KET-2100",
+    "name": "BrewMate Electric Kettle",
+    "category": "Home & Kitchen",
+    "price": { "$numberDecimal": "39.50" },
+    "currency": "USD",
+    "stock": { "available": 560, "reserved": 43 },
+    "availability": "in-stock",
+    "attributes": {
+      "brand": "BrewMate",
+      "capacity_l": 1.7,
+      "material": "Stainless Steel",
+      "autoShutOff": true
+    },
+    "variants": [],
+    "createdAt": { "$date": "2025-02-10T14:05:20Z" },
+    "updatedAt": { "$date": "2025-02-20T10:01:11Z" }
+  },
+  {
+    "_id": { "$oid": "652f9d8a2f1b4a0011223366" },
+    "sku": "SP-FTN-8800",
+    "name": "StridePlus Trail Running Shoes",
+    "category": "Sports & Outdoors",
+    "subCategory": "Footwear",
+    "price": { "$numberDecimal": "89.00" },
+    "currency": "USD",
+    "stock": { "available": 240, "reserved": 15 },
+    "availability": "preorder",
+    "attributes": {
+      "brand": "StridePlus",
+      "sizeRange": "US 7-13",
+      "gender": "Unisex",
+      "colorOptions": ["Blue", "Black", "Orange"]
+    },
+    "variants": [
+      {
+        "sku": "SP-FTN-8800-BLK-09",
+        "stock": { "available": 35, "reserved": 4 }
+      }
+    ],
+    "createdAt": { "$date": "2025-03-01T08:00:00Z" },
+    "updatedAt": { "$date": "2025-03-04T12:15:30Z" }
+  }
+]

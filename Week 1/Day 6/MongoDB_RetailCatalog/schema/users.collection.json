@@ -1,0 +1,52 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "title": "users collection schema",
+    "required": [
+      "username",
+      "email",
+      "passwordHash",
+      "roles",
+      "status",
+      "createdAt",
+      "updatedAt"
+    ],
+    "properties": {
+      "_id": {
+        "bsonType": "objectId"
+      },
+      "username": {
+        "bsonType": "string",
+        "minLength": 3
+      },
+      "email": {
+        "bsonType": "string",
+        "pattern": "^.+@.+\\..+$"
+      },
+      "passwordHash": {
+        "bsonType": "string"
+      },
+      "passwordSalt": {
+        "bsonType": ["string", "null"]
+      },
+      "roles": {
+        "bsonType": "array",
+        "items": {
+          "bsonType": "string"
+        }
+      },
+      "status": {
+        "enum": ["active", "locked", "pending"]
+      },
+      "lastLogin": {
+        "bsonType": ["date", "null"]
+      },
+      "createdAt": {
+        "bsonType": "date"
+      },
+      "updatedAt": {
+        "bsonType": "date"
+      }
+    }
+  }
+}
