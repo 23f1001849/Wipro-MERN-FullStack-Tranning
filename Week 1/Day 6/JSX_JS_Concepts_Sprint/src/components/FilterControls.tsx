@@ -1,27 +1,31 @@
-interface FilterControlsProps {
-  onShowAll: () => void;
-  onFilterEven: () => void;
-  onDoubleValues: () => void;
+export interface FilterOperation {
+  id: string;
+  label: string;
+  description: string;
+  onSelect: () => void;
 }
 
-const FilterControls = ({
-  onShowAll,
-  onFilterEven,
-  onDoubleValues,
-}: FilterControlsProps): JSX.Element => (
+interface FilterControlsProps {
+  operations?: FilterOperation[];
+}
+
+const FilterControls = ({ operations = [] }: FilterControlsProps): JSX.Element => (
   <section className="card controls">
     <h2>Array Method Playground</h2>
-    <p>Select an operation to watch array transformations in action.</p>
-    <div className="button-row">
-      <button type="button" onClick={onShowAll}>
-        Show All Numbers
-      </button>
-      <button type="button" onClick={onFilterEven}>
-        Filter Even Numbers
-      </button>
-      <button type="button" onClick={onDoubleValues}>
-        Double Each Number
-      </button>
+    <p>
+      Each button demonstrates a different array helper while keeping React renders predictable and
+      easy to trace.
+    </p>
+    <div className="control-grid" role="list">
+      {operations.map(({ id, label, description, onSelect }) => (
+        <div key={id} className="control-option" role="listitem">
+          <button type="button" onClick={onSelect}>
+            {label}
+          </button>
+          <p className="muted">{description}</p>
+        </div>
+      ))}
+      {operations.length === 0 && <p className="muted">Operations unavailable.</p>}
     </div>
   </section>
 );

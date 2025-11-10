@@ -35,7 +35,9 @@
   gap: 0.75rem;
 }
 
-.button-row button {
+.button-row button,
+.control-option button,
+.add-number-input-row button {
   background-color: #2563eb;
   border: none;
   color: #ffffff;
@@ -46,7 +48,9 @@
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-.button-row button:hover {
+.button-row button:hover,
+.control-option button:hover,
+.add-number-input-row button:hover {
   background-color: #1d4ed8;
   transform: translateY(-1px);
 }
@@ -62,6 +66,31 @@
   }
 }
 
+.control-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 680px) {
+  .control-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.control-option {
+  padding: 1rem;
+  background: linear-gradient(135deg, #eff6ff, #f8fafc);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.muted {
+  color: #6b7280;
+  margin: 0;
+}
+
 .number-list {
   list-style: none;
   padding: 0;
@@ -71,13 +100,40 @@
   gap: 0.8rem;
 }
 
-.number-list li {
-  padding: 0.75rem 0.5rem;
-  background: linear-gradient(135deg, #eff6ff, #dbeafe);
-  border-radius: 0.6rem;
+.number-chip {
+  padding: 0.85rem 0.75rem;
+  border-radius: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
   font-weight: 600;
   text-align: center;
-  color: #1d4ed8;
+  transition: transform 0.2s ease;
+}
+
+.number-chip__value {
+  font-size: 1.05rem;
+}
+
+.number-chip__meta {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.number-chip.is-even {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  color: #0f766e;
+}
+
+.number-chip.is-odd {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #b91c1c;
+}
+
+.number-chip:hover {
+  transform: translateY(-2px);
 }
 
 .hoisting-list {
@@ -89,6 +145,109 @@
 }
 
 .hoisting-list strong {
+  color: #0f172a;
+}
+
+.add-number-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.add-number-input-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.add-number-input-row input {
+  flex: 1;
+  padding: 0.65rem 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid #cbd5f5;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-number-input-row input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.add-number-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.dataset-size {
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.ghost-button {
+  background: transparent;
+  color: #1d4ed8;
+  border: 1px solid rgba(29, 78, 216, 0.35);
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.ghost-button:hover {
+  background-color: rgba(29, 78, 216, 0.08);
+  color: #1e40af;
+}
+
+.form-error {
+  color: #b91c1c;
+  margin: 0;
+  font-weight: 600;
+}
+
+.history-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.history-list li {
+  color: #334155;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.stats-grid div {
+  background-color: #f1f5f9;
+  border-radius: 0.6rem;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stats-grid dt {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #475569;
+  margin: 0;
+}
+
+.stats-grid dd {
+  margin: 0;
+  font-weight: 700;
   color: #0f172a;
 }
 

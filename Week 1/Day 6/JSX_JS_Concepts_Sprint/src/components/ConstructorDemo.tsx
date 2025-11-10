@@ -38,11 +38,11 @@ const ConstructorDemo = ({ values }: ConstructorDemoProps): JSX.Element => {
       <p>{collection.describe()}</p>
       <dl className="constructor-details">
         <dt>Original Values</dt>
-        <dd>{collection.original.join(', ')}</dd>
+        <dd>{collection.original.length ? collection.original.join(', ') : 'None'}</dd>
         <dt>Even Numbers</dt>
         <dd>{collection.even.join(', ') || 'None'}</dd>
         <dt>Doubled Values</dt>
-        <dd>{collection.doubled.join(', ')}</dd>
+        <dd>{collection.doubled.length ? collection.doubled.join(', ') : 'None'}</dd>
       </dl>
     </section>
   );
