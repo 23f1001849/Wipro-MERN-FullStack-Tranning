@@ -1,0 +1,225 @@
+{
+  "packages": [
+    {
+      "id": 1,
+      "name": "European Explorer",
+      "destination": "Paris, Rome, Barcelona",
+      "duration": "10 Days",
+      "price": 2499,
+      "description": "Visit three iconic European cities with guided tours and premium hotels.",
+      "image": "https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "includes": ["Flights", "Hotels", "Guided Tours", "Breakfast"],
+      "rating": 4.8,
+      "reviews": 245,
+      "category": "Cultural",
+      "availability": "Available"
+    },
+    {
+      "id": 2,
+      "name": "Asian Adventure",
+      "destination": "Tokyo, Bangkok, Singapore",
+      "duration": "12 Days",
+      "price": 2899,
+      "description": "Experience the diverse cultures and cuisines of Asia's most vibrant cities.",
+      "image": "https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "includes": ["Flights", "Hotels", "City Tours", "Some Meals"],
+      "rating": 4.7,
+      "reviews": 189,
+      "category": "Cultural",
+      "availability": "Available"
+    },
+    {
+      "id": 3,
+      "name": "Beach Paradise",
+      "destination": "Maldives",
+      "duration": "7 Days",
+      "price": 3499,
+      "description": "Luxurious overwater villa experience with water sports and spa treatments.",
+      "image": "https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "includes": ["Flights", "Overwater Villa", "All Meals", "Water Sports"],
+      "rating": 4.9,
+      "reviews": 312,
+      "category": "Beach",
+      "availability": "Limited"
+    },
+    {
+      "id": 4,
+      "name": "Safari Adventure",
+      "destination": "Kenya & Tanzania",
+      "duration": "8 Days",
+      "price": 3299,
+      "description": "Witness the great migration and experience Africa's incredible wildlife.",
+      "image": "https://images.pexels.com/photos/631317/pexels-photo-631317.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "includes": ["Flights", "Safari Lodge", "Game Drives", "All Meals"],
+      "rating": 4.9,
+      "reviews": 278,
+      "category": "Adventure",
+      "availability": "Available"
+    },
+    {
+      "id": 5,
+      "name": "South American Trek",
+      "destination": "Peru & Argentina",
+      "duration": "14 Days",
+      "price": 3199,
+      "description": "From Machu Picchu to Buenos Aires, discover South America's wonders.",
+      "image": "https://images.pexels.com/photos/2356045/pexels-photo-2356045.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "includes": ["Flights", "Hotels", "Trek Permits", "Local Guides"],
+      "rating": 4.8,
+      "reviews": 201,
+      "category": "Adventure",
+      "availability": "Available"
+    },
+    {
+      "id": 6,
+      "name": "Australian Highlights",
+      "destination": "Sydney & Great Barrier Reef",
+      "duration": "9 Days",
+      "price": 2799,
+      "description": "Explore iconic landmarks and dive into the world's largest coral reef.",
+      "image": "https://images.pexels.com/photos/995764/pexels-photo-995764.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "includes": ["Flights", "Hotels", "Reef Tour", "Sydney Opera Tour"],
+      "rating": 4.7,
+      "reviews": 167,
+      "category": "Adventure",
+      "availability": "Available"
+    },
+    {
+      "id": 7,
+      "name": "Nordic Winter Wonderland",
+      "destination": "Norway, Sweden, Finland",
+      "duration": "11 Days",
+      "price": 3599,
+      "description": "Chase the Northern Lights and experience the magic of Scandinavia.",
+      "image": "https://images.pexels.com/photos/1438404/pexels-photo-1438404.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "includes": ["Flights", "Hotels", "Northern Lights Tour", "All Meals"],
+      "rating": 4.9,
+      "reviews": 143,
+      "category": "Adventure",
+      "availability": "Limited"
+    },
+    {
+      "id": 8,
+      "name": "Caribbean Island Hopping",
+      "destination": "Jamaica, Bahamas, Aruba",
+      "duration": "10 Days",
+      "price": 2999,
+      "description": "Explore pristine beaches and vibrant island cultures across the Caribbean.",
+      "image": "https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "includes": ["Flights", "Beach Resorts", "Island Tours", "Water Activities"],
+      "rating": 4.6,
+      "reviews": 198,
+      "category": "Beach",
+      "availability": "Available"
+    }
+  ],
+  "destinations": [
+    {
+      "id": 1,
+      "name": "Paris, France",
+      "description": "Experience the city of love with iconic landmarks and rich culture.",
+      "price": 1299,
+      "image": "https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "country": "France",
+      "continent": "Europe",
+      "popular": true
+    },
+    {
+      "id": 2,
+      "name": "Tokyo, Japan",
+      "description": "Explore traditional temples and modern technology in perfect harmony.",
+      "price": 1599,
+      "image": "https://images.pexels.com/photos/2506923/pexels-photo-2506923.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "country": "Japan",
+      "continent": "Asia",
+      "popular": true
+    },
+    {
+      "id": 3,
+      "name": "Bali, Indonesia",
+      "description": "Relax on pristine beaches and discover spiritual retreats.",
+      "price": 899,
+      "image": "https://images.pexels.com/photos/2166559/pexels-photo-2166559.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "country": "Indonesia",
+      "continent": "Asia",
+      "popular": true
+    },
+    {
+      "id": 4,
+      "name": "New York, USA",
+      "description": "The city that never sleeps - Broadway, Times Square, and more.",
+      "price": 1099,
+      "image": "https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "country": "USA",
+      "continent": "North America",
+      "popular": true
+    },
+    {
+      "id": 5,
+      "name": "Dubai, UAE",
+      "description": "Luxury shopping, ultramodern architecture, and desert adventures.",
+      "price": 1399,
+      "image": "https://images.pexels.com/photos/1470502/pexels-photo-1470502.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "country": "UAE",
+      "continent": "Asia",
+      "popular": true
+    },
+    {
+      "id": 6,
+      "name": "Santorini, Greece",
+      "description": "Stunning sunsets, white-washed buildings, and crystal-clear waters.",
+      "price": 1199,
+      "image": "https://images.pexels.com/photos/161815/santorini-oia-greece-water-161815.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "country": "Greece",
+      "continent": "Europe",
+      "popular": true
+    },
+    {
+      "id": 7,
+      "name": "London, UK",
+      "description": "Historic landmarks, world-class museums, and royal heritage.",
+      "price": 1249,
+      "image": "https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "country": "UK",
+      "continent": "Europe",
+      "popular": false
+    },
+    {
+      "id": 8,
+      "name": "Machu Picchu, Peru",
+      "description": "Ancient Incan citadel set high in the Andes Mountains.",
+      "price": 1599,
+      "image": "https://images.pexels.com/photos/2356045/pexels-photo-2356045.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "country": "Peru",
+      "continent": "South America",
+      "popular": false
+    }
+  ],
+  "reviews": [
+    {
+      "id": 1,
+      "packageId": 1,
+      "author": "Sarah Johnson",
+      "rating": 5,
+      "comment": "Amazing experience! The guided tours were excellent and hotels were top-notch.",
+      "date": "2024-10-15"
+    },
+    {
+      "id": 2,
+      "packageId": 2,
+      "author": "Michael Chen",
+      "rating": 5,
+      "comment": "Best trip ever! Tokyo was incredible and the itinerary was perfect.",
+      "date": "2024-10-10"
+    },
+    {
+      "id": 3,
+      "packageId": 3,
+      "author": "Emma Williams",
+      "rating": 5,
+      "comment": "Paradise on earth! The overwater villa exceeded all expectations.",
+      "date": "2024-09-28"
+    }
+  ],
+  "bookings": []
+}

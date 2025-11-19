@@ -1,0 +1,180 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "price": 12.99,
+      "image": "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?w=400&h=600&fit=crop",
+      "description": "A tragic story of Jay Gatsby and his unrelenting love for Daisy Buchanan set against the backdrop of the Roaring Twenties.",
+      "year": 1925,
+      "pages": 218,
+      "genres": [
+        "Classic",
+        "Drama"
+      ],
+      "authorBio": "Chronicler of the Jazz Age whose lyrical prose captured the glamour and cost of the American Dream.",
+      "authorTopBooks": [
+        "The Great Gatsby",
+        "Tender Is the Night",
+        "This Side of Paradise"
+      ]
+    },
+    {
+      "id": "2",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "price": 14.99,
+      "image": "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop",
+      "description": "Scout Finch recounts her childhood in the Deep South as her father defends a Black man wrongly accused of a terrible crime.",
+      "year": 1960,
+      "pages": 281,
+      "genres": [
+        "Classic",
+        "Coming-of-age"
+      ],
+      "authorBio": "Pulitzer Prize–winning author celebrated for exploring justice, empathy, and moral courage in the American South.",
+      "authorTopBooks": [
+        "To Kill a Mockingbird",
+        "Go Set a Watchman",
+        "When Children Discover America"
+      ]
+    },
+    {
+      "id": "3",
+      "title": "1984",
+      "author": "George Orwell",
+      "price": 13.99,
+      "image": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&h=600&fit=crop",
+      "description": "Winston Smith wrestles with oppression in Oceania, a place where Big Brother watches everyone and independent thought is a crime.",
+      "year": 1949,
+      "pages": 328,
+      "genres": [
+        "Dystopian",
+        "Science Fiction"
+      ],
+      "authorBio": "Essayist and novelist who warned about authoritarianism, surveillance, and the fragility of truth.",
+      "authorTopBooks": [
+        "1984",
+        "Animal Farm",
+        "Homage to Catalonia"
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "price": 11.99,
+      "image": "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=400&h=600&fit=crop",
+      "description": "Elizabeth Bennet navigates love, manners, and misunderstandings in Regency-era England.",
+      "year": 1813,
+      "pages": 279,
+      "genres": [
+        "Classic",
+        "Romance"
+      ],
+      "authorBio": "Beloved Regency author renowned for her wit, social commentary, and keen observations of relationships.",
+      "authorTopBooks": [
+        "Pride and Prejudice",
+        "Sense and Sensibility",
+        "Emma"
+      ]
+    },
+    {
+      "id": "5",
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "price": 13.49,
+      "image": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=600&fit=crop",
+      "description": "Holden Caulfield recounts his turbulent final days at Pencey Prep as he seeks authenticity and meaning.",
+      "year": 1951,
+      "pages": 234,
+      "genres": [
+        "Classic",
+        "Literary Fiction"
+      ],
+      "authorBio": "Reclusive voice of post-war adolescence whose work explores isolation, innocence, and authenticity.",
+      "authorTopBooks": [
+        "The Catcher in the Rye",
+        "Nine Stories",
+        "Franny and Zooey"
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "author": "J.K. Rowling",
+      "price": 16.99,
+      "image": "https://images.unsplash.com/photo-1621351183012-e2f9972dd9bf?w=400&h=600&fit=crop",
+      "description": "An orphaned boy discovers he is a wizard and begins his education at Hogwarts School of Witchcraft and Wizardry.",
+      "year": 1997,
+      "pages": 309,
+      "genres": [
+        "Fantasy",
+        "Adventure"
+      ],
+      "authorBio": "Creator of the wizarding world whose imagination rekindled a global love for reading among young audiences.",
+      "authorTopBooks": [
+        "Harry Potter and the Sorcerer's Stone",
+        "Harry Potter and the Chamber of Secrets",
+        "Harry Potter and the Prisoner of Azkaban"
+      ]
+    },
+    {
+      "id": "7",
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "price": 15.99,
+      "image": "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&h=600&fit=crop",
+      "description": "Bilbo Baggins joins a band of dwarves to reclaim their homeland from the dragon Smaug.",
+      "year": 1937,
+      "pages": 310,
+      "genres": [
+        "Fantasy",
+        "Adventure"
+      ],
+      "authorBio": "Philologist and fantasy pioneer who built immersive worlds filled with lore, languages, and epic quests.",
+      "authorTopBooks": [
+        "The Hobbit",
+        "The Lord of the Rings",
+        "The Silmarillion"
+      ]
+    },
+    {
+      "id": "8",
+      "title": "The Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "price": 24.99,
+      "image": "https://images.unsplash.com/photo-1589998059171-988d887df646?w=400&h=600&fit=crop",
+      "description": "Fellowship forms to carry the One Ring to Mount Doom and destroy it before Sauron conquers Middle-earth.",
+      "year": 1954,
+      "pages": 1178,
+      "genres": [
+        "Fantasy",
+        "Epic"
+      ],
+      "authorBio": "Philologist and fantasy pioneer who built immersive worlds filled with lore, languages, and epic quests.",
+      "authorTopBooks": [
+        "The Hobbit",
+        "The Lord of the Rings",
+        "The Children of Húrin"
+      ]
+    },
+    {
+      "id": "4be8",
+      "title": "s",
+      "author": "22dfsdfef",
+      "price": 22,
+      "description": "asdawdadsdawda",
+      "pages": 23534,
+      "year": 2234,
+      "genres": [
+        "sdawdadasd"
+      ],
+      "authorTopBooks": [
+        "awdadawda"
+      ],
+      "image": "sdwdadwdasddwda"
+    }
+  ]
+}

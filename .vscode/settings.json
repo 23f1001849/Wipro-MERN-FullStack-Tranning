@@ -5,5 +5,8 @@
         "preorder",
         "Priya",
         "Skus"
-    ]
+    ],
+    "files.associations": {
+        "plyconfig.json": "jsonc"
+    }
 }

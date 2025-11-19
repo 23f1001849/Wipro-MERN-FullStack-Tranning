@@ -1,0 +1,47 @@
+:root {
+  --color-bg: #050914;
+  --color-surface: rgba(10, 15, 30, 0.9);
+  --color-card: rgba(15, 23, 42, 0.9);
+  --color-text: #e2e8f0;
+  --color-muted: #94a3b8;
+  --color-border: rgba(148, 163, 184, 0.35);
+  --color-banner-bg: #b91c1c;
+  --color-banner-text: #ffffff;
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --color-bg: #f4f6fb;
+  --color-surface: rgba(255, 255, 255, 0.95);
+  --color-card: #ffffff;
+  --color-text: #0f172a;
+  --color-muted: #475569;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --color-banner-bg: #fde68a;
+  --color-banner-text: #78350f;
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+#root {
+  min-height: 100%;
+}

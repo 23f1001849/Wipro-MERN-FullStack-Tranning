@@ -1,0 +1,21 @@
+{
+  "name": "day-8-mongodb-atlas",
+  "version": "1.0.0",
+  "description": "Day 8 - MongoDB Atlas Connection and Advanced Features",
+  "main": "atlas-connection.js",
+  "scripts": {
+    "test": "node atlas-connection.js",
+    "connect": "node atlas-connection.js"
+  },
+  "keywords": [
+    "mongodb",
+    "atlas",
+    "database",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^6.3.0"
+  }
+}

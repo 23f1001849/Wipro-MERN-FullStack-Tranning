@@ -1,0 +1,32 @@
+.app-shell {
+  min-height: 100%;
+  background: var(--color-bg);
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+.offline-banner {
+  background: var(--color-banner-bg);
+  color: var(--color-banner-text);
+  padding: 12px 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.route-fade {
+  animation: fadeIn 0.6s ease both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.theme-toggle {
+  font-weight: 600;
+}

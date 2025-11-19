@@ -1,0 +1,66 @@
+.advanced-page {
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 60%);
+  min-height: 100vh;
+}
+
+.showcase-card {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 24px;
+  padding: 24px;
+  min-height: 220px;
+}
+
+.module-card,
+.stats-card,
+.product-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.module-stack > * + * {
+  margin-top: 16px;
+}
+
+.lazy-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.stats-card {
+  height: 100%;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.25s ease forwards;
+  z-index: 999;
+}
+
+.modal-surface {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  width: min(480px, 90vw);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.25s ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
