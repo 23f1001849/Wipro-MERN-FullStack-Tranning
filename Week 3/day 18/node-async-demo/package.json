@@ -1,0 +1,10 @@
+{
+  "name": "node-async-demo",
+  "version": "0.0.1",
+  "description": "Day 18 async programming with callbacks, promises, async/await",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "license": "MIT"
+}

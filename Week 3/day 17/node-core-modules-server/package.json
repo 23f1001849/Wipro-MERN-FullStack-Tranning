@@ -1,0 +1,10 @@
+{
+  "name": "node-core-modules-server",
+  "version": "0.0.1",
+  "description": "Day 17 demo for fs, path, http/https, events",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "license": "MIT"
+}

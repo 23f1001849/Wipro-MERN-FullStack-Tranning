@@ -1,0 +1,8 @@
+{
+  "name": "React Hooks PWA Demo",
+  "short_name": "HooksPWA",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#22d3ee"
+}

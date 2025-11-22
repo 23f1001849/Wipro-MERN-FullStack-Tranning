@@ -1,0 +1,16 @@
+body {
+  background: #f8fafc;
+}
+
+.team-card {
+  border: 2px solid;
+  border-radius: 16px;
+  padding: 1.25rem;
+  background: #fff;
+  min-height: 150px;
+}
+
+.badge {
+  border-radius: 999px;
+  color: #0f172a;
+}

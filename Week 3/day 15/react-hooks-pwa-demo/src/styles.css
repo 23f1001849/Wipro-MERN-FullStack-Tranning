@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui;
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+.app-shell {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card {
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #1f2937;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.card-light {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.card-dark {
+  background: #1f2937;
+  color: #f8fafc;
+}
+
+button {
+  background: #22d3ee;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.counter-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}

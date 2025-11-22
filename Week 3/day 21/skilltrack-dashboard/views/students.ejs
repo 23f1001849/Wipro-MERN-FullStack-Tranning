@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillTrack | Students</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="hero compact">
+    <div>
+      <p class="eyebrow">Cohort directory</p>
+      <h1>Students & Progress</h1>
+      <p>Built-in and custom middleware guard every submission.</p>
+      <a class="btn" href="/">Back to dashboard</a>
+    </div>
+  </header>
+
+  <% if (toastMessage) { %>
+    <div class="toast">
+      <p><%= toastMessage %></p>
+    </div>
+  <% } %>
+
+  <main class="grid">
+    <section class="card full-span">
+      <div class="card-header">
+        <h2>Current cohort</h2>
+        <span class="muted">Avg completion <%= summary.averageCompletion %>%</span>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Course</th>
+              <th>Attendance</th>
+              <th>Completion</th>
+              <th>Last Active</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% students.forEach((student) => { %>
+              <tr>
+                <td><%= student.id %></td>
+                <td><%= student.name %></td>
+                <td><%= student.email %></td>
+                <td><%= student.course %></td>
+                <td><%= student.attendance %>%</td>
+                <td><%= student.completion %>%</td>
+                <td><%= student.lastActive %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Add student</h2>
+      <form method="POST" action="/students" class="form">
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Course / Track
+          <input type="text" name="course" />
+        </label>
+        <button type="submit" class="btn">Save student</button>
+      </form>
+      <p class="muted">A validation middleware halts empty payloads with a 400 response.</p>
+    </section>
+  </main>
+</body>
+</html>

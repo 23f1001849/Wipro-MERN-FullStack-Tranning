@@ -1,0 +1,12 @@
+{
+  "name": "express-intro-demo",
+  "version": "0.0.1",
+  "description": "Day 19 introduction to Express.js",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

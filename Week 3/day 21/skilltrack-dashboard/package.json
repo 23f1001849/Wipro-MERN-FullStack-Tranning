@@ -1,0 +1,23 @@
+{
+  "name": "skilltrack-dashboard",
+  "version": "1.0.0",
+  "description": "Student Progress Dashboard for SkillTrack Academy",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "node ./tests/smoke.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "supertest": "^7.1.1"
+  }
+}

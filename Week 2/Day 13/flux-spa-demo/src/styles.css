@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.app-shell {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+section {
+  background: #1e293b;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+}
+
+.task-form {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #475569;
+  border-radius: 8px;
+  background: #0f172a;
+  color: inherit;
+}
+
+button {
+  background: #22d3ee;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #94a3b8;
+}

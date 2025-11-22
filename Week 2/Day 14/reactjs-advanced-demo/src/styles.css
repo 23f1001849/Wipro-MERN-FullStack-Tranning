@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui;
+  background: radial-gradient(circle at top, #1d4ed8, #0f172a);
+  color: #f8fafc;
+}
+
+.app-shell {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem;
+}
+
+section {
+  background: rgba(15, 23, 42, 0.55);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(4px);
+}
+
+.card {
+  background: rgba(15, 23, 42, 0.85);
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+button {
+  background: #facc15;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.portal-banner {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #22c55e;
+  color: #0f172a;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.error {
+  background: #ef4444;
+  padding: 1rem;
+  border-radius: 10px;
+}

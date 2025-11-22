@@ -1,0 +1,11 @@
+{
+  "name": "node-basics-server",
+  "version": "0.0.1",
+  "description": "Day 16 demo server covering Node.js introduction topics.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "keywords": ["node", "basics", "training"],
+  "license": "MIT"
+}

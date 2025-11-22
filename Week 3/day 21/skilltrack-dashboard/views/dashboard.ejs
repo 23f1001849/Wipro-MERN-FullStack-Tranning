@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SkillTrack | Dashboard</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Internal tool</p>
+      <h1>SkillTrack Student Progress</h1>
+      <p>Monitor requests, student momentum, and cohort health in a single view.</p>
+      <div class="cta-group">
+        <a class="btn" href="/students">View students</a>
+        <a class="btn ghost" href="/simulate-error">Test error flow</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Cohort Snapshot</h2>
+      <dl class="metrics">
+        <div>
+          <dt>Total students</dt>
+          <dd><%= summary.totalStudents %></dd>
+        </div>
+        <div>
+          <dt>Avg attendance</dt>
+          <dd><%= summary.averageAttendance %>%</dd>
+        </div>
+        <div>
+          <dt>Avg completion</dt>
+          <dd><%= summary.averageCompletion %>%</dd>
+        </div>
+        <div>
+          <dt>High performers</dt>
+          <dd><%= summary.highPerformers %></dd>
+        </div>
+      </dl>
+      <p class="muted">Last updated <%= summary.lastUpdated %></p>
+    </section>
+
+    <section class="card">
+      <h2>Quick add student</h2>
+      <form method="POST" action="/students" class="form">
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Course / Track
+          <input type="text" name="course" placeholder="Full Stack Accelerator" />
+        </label>
+        <button type="submit" class="btn">Add student</button>
+      </form>
+      <p class="muted">Validation middleware will stop empty submissions before they reach the route.</p>
+    </section>
+
+    <section class="card full-span">
+      <div class="card-header">
+        <h2>Recent activity</h2>
+        <span class="muted">Request logging middleware captures every hit before routes run.</span>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Course</th>
+              <th>Email</th>
+              <th>Attendance</th>
+              <th>Completion</th>
+              <th>Last Active</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% students.forEach((student) => { %>
+              <tr>
+                <td><%= student.name %></td>
+                <td><%= student.course %></td>
+                <td><%= student.email %></td>
+                <td><%= student.attendance %>%</td>
+                <td><%= student.completion %>%</td>
+                <td><%= student.lastActive %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Custom middleware, morgan, and Express error handling keep SkillTrack reliable.</small>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "express-routing-demo",
+  "version": "0.0.1",
+  "description": "Day 20 routing + middleware concepts",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "morgan": "^1.10.0"
+  }
+}
