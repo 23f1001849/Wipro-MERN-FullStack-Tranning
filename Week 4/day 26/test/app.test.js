@@ -54,4 +54,11 @@ describe('GET /', () => {
         );
     });
 });
-//In above code we have written a simple test case to check if the root route (/) returns "Hello World!" with a 200 status code. We used supertest to make a GET request to the app and chai to assert the response. The tests can be run using the command "npm test" as defined in package.json.
+
+//Further  testing can be done for following : 
+// 1. Testing other routes and endpoints
+// 2. Testing with different HTTP methods (POST, PUT, DELETE, etc.)
+// 3. Testing with various input data and query parameters
+// 4. Testing error handling and edge cases
+// 5. Integration testing with databases or external services
+// 6. Performance testing for response times and load handling
