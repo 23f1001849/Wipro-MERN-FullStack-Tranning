@@ -1,0 +1,11 @@
+└── JOI_VALIDATION/
+    ├── controllers/
+    ├── express-validator/
+    ├── joi/
+    │   ├── JoiMiddleware.js (0.0 KB)
+    │   └── schema.js (0.8 KB)
+    ├── routes/
+    ├── package-lock.json (3.2 KB)
+    ├── package.json (0.3 KB)
+    ├── project-structure.txt (0.3 KB)
+    └── server.js (0.0 KB)

@@ -1,0 +1,18 @@
+{
+  "name": "middleware-for-input-validation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-validator": "^7.3.1",
+    "joi": "^18.0.2"
+  }
+}
