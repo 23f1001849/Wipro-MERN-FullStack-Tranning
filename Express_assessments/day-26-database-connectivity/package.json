@@ -1,0 +1,27 @@
+{
+  "name": "day-26-database-connectivity",
+  "version": "1.0.0",
+  "description": "SkillSphere - MySQL, MongoDB, and Sequelize Database Integration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "express",
+    "mysql",
+    "mongodb",
+    "sequelize",
+    "database"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "mongoose": "^9.0.0",
+    "mysql2": "^3.15.3",
+    "sequelize": "^6.37.7"
+  }
+}

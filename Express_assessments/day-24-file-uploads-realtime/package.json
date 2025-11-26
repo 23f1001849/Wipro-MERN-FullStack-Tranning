@@ -1,0 +1,25 @@
+{
+  "name": "day-24-file-uploads-realtime",
+  "version": "1.0.0",
+  "description": "SkillSphere - File Uploads & Real-Time Chat",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "express",
+    "multer",
+    "socket.io",
+    "upload",
+    "chat"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "multer": "^2.0.2",
+    "socket.io": "^4.8.1"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "day-21-middleware-templates",
+  "version": "1.0.0",
+  "description": "SkillSphere LMS - Middleware & EJS Templates",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["express", "middleware", "ejs", "templates"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1"
+  }
+}

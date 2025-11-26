@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSphere Live Chat</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .chat-container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .chat-header h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .online-count {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .chat-body {
+            display: flex;
+            height: 500px;
+        }
+        
+        .users-sidebar {
+            width: 200px;
+            background: #f5f7fa;
+            border-right: 1px solid #eee;
+            padding: 1rem;
+        }
+        
+        .users-sidebar h3 {
+            color: #333;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .users-list {
+            list-style: none;
+        }
+        
+        .users-list li {
+            padding: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .users-list li::before {
+            content: '🟢 ';
+        }
+        
+        .messages-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 15px;
+            max-width: 70%;
+        }
+        
+        .message.own {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            margin-left: auto;
+        }
+        
+        .message.other {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .message.system {
+            background: transparent;
+            color: #999;
+            text-align: center;
+            font-size: 0.85rem;
+            max-width: 100%;
+        }
+        
+        .message-header {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            margin-bottom: 0.25rem;
+        }
+        
+        .message-text {
+            word-wrap: break-word;
+        }
+        
+        .typing-indicator {
+            padding: 0.5rem 1rem;
+            color: #999;
+            font-size: 0.85rem;
+            font-style: italic;
+        }
+        
+        .input-area {
+            display: flex;
+            padding: 1rem;
+            background: #f5f7fa;
+            border-top: 1px solid #eee;
+        }
+        
+        .input-area input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #eee;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .input-area input:focus {
+            border-color: #667eea;
+        }
+        
+        .input-area button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .input-area button:hover {
+            opacity: 0.9;
+        }
+        
+        .upload-link {
+            text-align: center;
+            padding: 0.75rem;
+            background: #f5f7fa;
+        }
+        
+        .upload-link a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        /* Join Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .modal-content h2 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .modal-content input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .modal-content button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Join Modal -->
+    <div class="modal" id="joinModal">
+        <div class="modal-content">
+            <h2>Join SkillSphere Chat</h2>
+            <input type="text" id="usernameInput" placeholder="Enter your name..." maxlength="20">
+            <button onclick="joinChat()">Join Chat</button>
+        </div>
+    </div>
+    
+    <!-- Chat Container -->
+    <div class="chat-container hidden" id="chatContainer">
+        <div class="chat-header">
+            <h1>SkillSphere Live Chat</h1>
+            <p class="online-count">Online: <span id="onlineCount">0</span></p>
+        </div>
+        
+        <div class="chat-body">
+            <div class="users-sidebar">
+                <h3>Online Users</h3>
+                <ul class="users-list" id="usersList"></ul>
+            </div>
+            
+            <div class="messages-area">
+                <div class="messages" id="messages"></div>
+                <div class="typing-indicator hidden" id="typingIndicator"></div>
+                <form class="input-area" id="messageForm">
+                    <input type="text" id="messageInput" placeholder="Type a message..." autocomplete="off">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="upload-link">
+            <a href="/upload">Upload Course Materials</a>
+        </div>
+    </div>
+    
+    <script>
+        const socket = io();
+        let username = '';
+        let typingTimeout;
+        
+        // Elements
+        const joinModal = document.getElementById('joinModal');
+        const chatContainer = document.getElementById('chatContainer');
+        const usernameInput = document.getElementById('usernameInput');
+        const messageForm = document.getElementById('messageForm');
+        const messageInput = document.getElementById('messageInput');
+        const messagesDiv = document.getElementById('messages');
+        const usersList = document.getElementById('usersList');
+        const onlineCount = document.getElementById('onlineCount');
+        const typingIndicator = document.getElementById('typingIndicator');
+        
+        // Join chat
+        function joinChat() {
+            username = usernameInput.value.trim();
+            if (username) {
+                socket.emit('join', username);
+                joinModal.classList.add('hidden');
+                chatContainer.classList.remove('hidden');
+                addSystemMessage(`You joined as ${username}`);
+            }
+        }
+        
+        // Enter key to join
+        usernameInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') joinChat();
+        });
+        
+        // Send message
+        messageForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = messageInput.value.trim();
+            if (text) {
+                socket.emit('chat message', { text });
+                messageInput.value = '';
+                socket.emit('stop typing');
+            }
+        });
+        
+        // Typing indicator
+        messageInput.addEventListener('input', () => {
+            socket.emit('typing');
+            clearTimeout(typingTimeout);
+            typingTimeout = setTimeout(() => {
+                socket.emit('stop typing');
+            }, 1000);
+        });
+        
+        // Socket events
+        socket.on('chat message', (data) => {
+            addMessage(data);
+        });
+        
+        socket.on('user joined', (data) => {
+            addSystemMessage(`${data.username} joined the chat`);
+        });
+        
+        socket.on('user left', (data) => {
+            addSystemMessage(`${data.username} left the chat`);
+        });
+        
+        socket.on('users list', (users) => {
+            usersList.innerHTML = users.map(u => `<li>${u}</li>`).join('');
+            onlineCount.textContent = users.length;
+        });
+        
+        socket.on('typing', (data) => {
+            typingIndicator.textContent = `${data.username} is typing...`;
+            typingIndicator.classList.remove('hidden');
+        });
+        
+        socket.on('stop typing', () => {
+            typingIndicator.classList.add('hidden');
+        });
+        
+        // Helper functions
+        function addMessage(data) {
+            const div = document.createElement('div');
+            const isOwn = data.username === username;
+            div.className = `message ${isOwn ? 'own' : 'other'}`;
+            div.innerHTML = `
+                <div class="message-header">${isOwn ? 'You' : data.username}</div>
+                <div class="message-text">${escapeHtml(data.text)}</div>
+            `;
+            messagesDiv.appendChild(div);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+        
+        function addSystemMessage(text) {
+            const div = document.createElement('div');
+            div.className = 'message system';
+            div.textContent = text;
+            messagesDiv.appendChild(div);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>

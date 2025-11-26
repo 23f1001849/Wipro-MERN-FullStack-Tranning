@@ -1,0 +1,23 @@
+{
+  "name": "day-25-testing-deployment",
+  "version": "1.0.0",
+  "description": "SkillSphere - Testing & Deployment with Mocha, Chai, SuperTest",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "NODE_ENV=test mocha test/*.test.js --exit",
+    "test:verbose": "NODE_ENV=test mocha test/*.test.js --exit --reporter spec"
+  },
+  "keywords": ["express", "testing", "mocha", "chai", "supertest"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "chai": "^6.2.1",
+    "mocha": "^11.7.5",
+    "supertest": "^7.1.4"
+  }
+}

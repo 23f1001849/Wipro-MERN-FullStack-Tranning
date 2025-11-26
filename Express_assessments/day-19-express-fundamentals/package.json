@@ -1,0 +1,18 @@
+{
+  "name": "day-19-express-fundamentals",
+  "version": "1.0.0",
+  "description": "Express.js Fundamentals - BookStore API with CRUD operations",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["express", "nodejs", "api", "crud", "bookstore"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-validator": "^7.3.1"
+  }
+}

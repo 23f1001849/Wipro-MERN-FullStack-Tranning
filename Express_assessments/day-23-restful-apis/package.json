@@ -1,0 +1,19 @@
+{
+  "name": "day-23-restful-apis",
+  "version": "1.0.0",
+  "description": "SkillSphere - RESTful APIs with validation and rate limiting",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["express", "rest", "api", "validation", "rate-limit"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "express-validator": "^7.3.1"
+  }
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %> - SkillSphere</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+        nav {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            padding: 1rem 2rem;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav a:hover { background: rgba(255,255,255,0.2); }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .welcome-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .user-info {
+            color: #666;
+        }
+        .role-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .role-admin {
+            background: #667eea;
+            color: white;
+        }
+        .role-student {
+            background: #28a745;
+            color: white;
+        }
+        .role-instructor {
+            background: #fd7e14;
+            color: white;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .stat-card h3 {
+            color: #333;
+            font-size: 1.75rem;
+        }
+        .stat-card p {
+            color: #666;
+        }
+        .alert {
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <% if (user && user.role === 'admin') { %>
+                <li><a href="/admin">Admin Panel</a></li>
+            <% } %>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+    
+    <main class="container">
+        <% if (typeof success_msg !== 'undefined' && success_msg.length > 0) { %>
+            <div class="alert alert-success"><%= success_msg %></div>
+        <% } %>
+        
+        <% if (typeof error_msg !== 'undefined' && error_msg.length > 0) { %>
+            <div class="alert alert-danger"><%= error_msg %></div>
+        <% } %>
+        
+        <div class="welcome-card">
+            <h1>Welcome, <%= user.name %>!</h1>
+            <p class="user-info">
+                <strong>Email:</strong> <%= user.email %><br>
+                <strong>Role:</strong> 
+                <span class="role-badge role-<%= user.role %>"><%= user.role %></span>
+            </p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>5</h3>
+                <p>Enrolled Courses</p>
+            </div>
+            <div class="stat-card">
+                <h3>3</h3>
+                <p>Completed</p>
+            </div>
+            <div class="stat-card">
+                <h3>2</h3>
+                <p>Certificates</p>
+            </div>
+            <div class="stat-card">
+                <h3>24h</h3>
+                <p>Learning Time</p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
