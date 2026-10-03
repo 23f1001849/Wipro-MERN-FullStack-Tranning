@@ -11,8 +11,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "express": "^4.19.2",
+    "express": "^4.22.3",
     "express-validator": "^7.3.1",
-    "joi": "^18.0.2"
+    "joi": "^18.2.6"
   }
 }
